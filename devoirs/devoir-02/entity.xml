@@ -1,0 +1,13 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE Root SYSTEM 'entity.dtd'>
+<Root>
+  <Element3>
+    <Element1 id="EL1" />
+    <Element1 id="EL2" />
+    <Element4 id="EL4_1" />
+    <Element4 id="EL4_2" />
+    Ouiii
+  </Element3>
+  <Element4 id="EL4_3" />
+  <Element5 id="EL5" />
+</Root>
