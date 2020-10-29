@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?xml-model href="factbook-minimal.rng" type="application/xml" schematypens="http://relaxng.org/ns/structure/1.0"?>
+
+<mondial>
+  <continent id="Am1" name="North-America"/>
+  <continent id="Am2" name="South-America"/>
+  <country id="Fr" name="France" gdp_total="77777777777" gdp_agri="777777">
+    <name>France</name>
+    <city latitude="77.77" longitude="777.77">
+      <name>Paris</name>
+      <population xmlns="inalco:documents-structures:ns">7777777</population>
+      <located_at/>
+    </city>
+    <city latitude="7.77" longitude="77.77">
+      <name>Bordeaux</name>
+      <population xmlns="inalco:documents-structures:ns">777777</population>
+    </city>
+  </country>
+  <country id="Ru" name="Russie" gdp_total="6666666666" gdp_agri="666666">
+    <name>Russie</name>
+    <city latitude="66.6" longitude="6.66">
+      <name>MoscEVIL</name>
+      <population xmlns="inalco:documents-structures:ns">6666666</population>
+      <located_at/>
+    </city>
+  </country>
+</mondial>
