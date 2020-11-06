@@ -21,7 +21,6 @@
             <element name="country">
                 <ref name="att.identification"/>
                 <ref name="att.others"/>
-                <empty/>
                 <ref name="country.composition"/>
             </element>
         </oneOrMore>
