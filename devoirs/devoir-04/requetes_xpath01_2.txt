@@ -1,0 +1,27 @@
+1) /pdv_liste
+2) /pdv_liste/pdv/*
+3) //ville/text()
+4) /pdv_liste/pdv[46]
+5) /pdv_liste/pdv/prix[last()]
+6) /pdv_liste/pdv[@id="3150005"]
+7) /pdv_liste/pdv[not(services/service/text()="GPL")]
+   /pdv_liste/pdv[not(services/service="GPL")]
+8) ./following-sibling::*
+9) //ville[../@cp="16170"]
+10) /pdv_liste/pdv[contains(ouverture/@saufjour, 'Lundi')]
+11) /pdv_liste/pdv[services/service="Relais colis"]
+12) //*[following-sibling::*[10]/text()="Piste poids lourds"]
+13) //ville[../rupture/@nom="SP95" and contains( ../rupture/@début,"2013-02-04")]
+14) /pdv_liste/pdv[not(fermeture/@*)]
+15) boolean(/pdv_liste/pdv[ville="La Mure" and prix/@nom="E10"])
+16) count(/pdv_liste/pdv)
+17) depuis le pvd en question :  string-length(./adresse/text())
+18) avec xpath02 : //adresse[string-length() = max(//adresse/string-length())]
+19) /pdv_liste/pdv[ouverture/@fin!="20:00"]
+20) avec xpath01, depuis chaque élément "prix"  : translate(./@nom, 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz')
+    avec xpath02 : //prix/lower-case(@nom)
+21) avec xpath 01, en se plaçant sur élément pvd dont latitude contient un ".": concat(substring( @latitude, 0 , 8 ),"--",substring(@latitude , 9))
+                   (remplace par un seul "-") : translate(@latitude,"\.","-")
+    avec xpath 02 : /pdv_liste/pdv/replace(@latitude,"\.","--")
+22) avec xpath 01, en se placant sur un élément "prix" : concat(substring(@maj , 11),"T",substring( @maj , 0 , 11 ))
+    avec xpath 02 : /pdv_liste/pdv/prix/concat(substring(@maj , 11),"T",substring( @maj , 0 , 11 ))
