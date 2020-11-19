@@ -162,7 +162,7 @@ Cette expression retourne *true*, si tous les points de vente ont un enfant.
 
 #### `union`
 
-1. Renvoyer l'union de tous les services.
+1. Renvoyer l'union de toutes les adresses et des villes.
 2. Écrire une requête qui sélectionne les points de vente qui vendent du `SP95` et du `SP98`. Mais pas forcément en même temps.
 
 #### `intersect`
