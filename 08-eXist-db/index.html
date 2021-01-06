@@ -1,0 +1,115 @@
+<div xmlns="http://www.w3.org/1999/xhtml" data-template="templates:surround" data-template-with="templates/page.html" data-template-at="content">
+    <div class="row">
+        <div class="col-md-12">
+            <h1>Hello World.</h1>
+            <p>La page d'accueil de notre application.</p>
+            
+            <h2>Première fonction</h2>
+            <div data-template="bjr:greeting"/>
+            
+            <h2>Fonction avec paramètres</h2>
+            <div data-template="bjr:greeting-someone" data-template-name="Arthur"/>
+            
+            <h2>Exercice</h2>
+            <p>Créer un fichier <code>modules/mathematiques.xql</code>.
+            Faire une fonction <code>addition</code> qui prend en argument deux paramètres et retourne
+            la somme de ceux-ci.</p>
+            <p>Appeler cette fonction dans un élément <code>&lt;p&gt;</code> en dessous.</p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <h1>Fonctions avancées</h1>
+            
+            <h2>Les formulaires</h2>
+            <p>Il est courant d'employer des formulaires pour laisser le choix à l'utilisateur
+                de rentrer des informations. Nous allons voir comment récupérer celles-ci.
+            </p>
+            <p>Nous allons créer un formulaire où l'utilisateur va pouvoir entrer son prénom,
+            ce prénom sera passé en paramètre à une fonction <code>bjr:greeting-user</code>.
+            Le nom de la variable est déclaré dans les attributs <code>@for</code> et <code>@name</code>.
+            Ensuite, la fonction <code>bjr:greeting-user</code> est appelée dans une <code>div</code>.
+            Exist-db fait la liaison avec le nom du paramètre déclaré et la fonction.
+            </p>
+            <p><pre>
+&lt;form action="" id="prenom-form"&gt;
+    &lt;label for="queryPrenom"&gt;Entrer un prénom :&lt;/label&gt;
+    &lt;input name="queryPrenom"/&gt;
+&lt;/form&gt;
+&lt;div class="bjr:greeting-user"/&gt;</pre>
+            </p>
+            
+            <form action="" id="prenom-form">
+                <label for="queryPrenom">Entrer un prénom :</label>
+                <input name="queryPrenom"/>
+            </form>
+        
+            <div class="bjr:greeting-user"/>
+            
+            <p>Il ne faut pas oublier de tester la présence du paramètre, et renvoyer une séquence vide
+            s'il n'existe pas afin de ne pas faire planter l'application.</p>
+            <p>Vous pouvez voir que le prénom entré est passé en paramètre via l'URL
+            <code>hello/index.html?queryPrenom=Luke</code>.</p>
+            
+            <p>On peut mixer plusieurs types de formulaires comme l'exemple ci-dessous.
+            Nous avons un formulaire avec un champs libre, pour effectuer une recherche
+            sans se soucier de la case, on peut déclarer un autre formulaire contenant des boutons 
+            de type radio. Il faut indiquer les attributs <code>@name</code> et <code>@value</code>.
+            Ensuite, dans la fonction nous pourrons avoir déclarer un paramètre ayant le même nom 
+            que <code>@name</code> et avoir accès à sa valeur avec <code>$varName = 'valeur'</code>.
+            <pre>
+&lt;form action=""&gt;
+    &lt;label for="prenom"&gt;Entrer un prénom&lt;/label&gt;
+    &lt;input name="prenom"/&gt;
+    &lt;br/&gt;
+    &lt;input type="radio" id="case-sensitive" name="case" value="sensitive" checked="checked"/&gt;
+    &lt;label for="case"&gt;Sensible à la casse&lt;/label&gt;
+
+    &lt;input type="radio" id="case-insensitive" name="case" value="insensitive"/&gt;
+    &lt;label for="case"&gt;Insensible à la casse&lt;/label&gt;
+&lt;/form&gt;
+&lt;p class="bjr:greeting-user"/&gt;</pre></p>
+
+
+            <h2>Récupérer des paramètres</h2>
+            <p>Pour l'instant, les paramètres sont <i>hardcodés</i> dans nos éléments.
+                Il est possible de les récupérer de façon dynamique à l'aide des paramètres
+                présents dans une URL (voir <a href="https://en.wikipedia.org/wiki/Query_string">sur Wikipédia</a>).
+                Pour cela, nous allons utiliser la fonction <code>request:get-parameter(paramName, ())</code>
+                disponible dans la <a href="http://exist-db.org/exist/apps/fundocs/index.html">librairie de <i>eXist-db</i></a>. L'espace de noms de ce module est <code>import module namespace request="http://exist-db.org/xquery/request";</code>.
+            </p>
+            <p>Nous allons créer une fonction <code>bjr:greeting-query</code>. Elle sera chargée de
+                saluer un utilisateur où le prénom aura été spécifié comme un paramètre de l'url.
+                Pour ce faire, on va ajouter un attribut <code>@href</code> pointant
+                sur notre page avec le prénom.
+            </p>
+            <p>En cliquant sur ce <a href="./index.html?name=Liu">lien</a>,
+            le paragraphe suivant devrait afficher <code>Bonjour, Liu!</code>.</p>
+            <p data-template="bjr:greeting-query">En attente de contenu</p>
+            <p><a href="./index.html">Cliquez ici</a> pour supprimer le paragraphe précédant !</p>
+            
+            <h2>Recherche plein texte</h2>
+            <p>Lire la <a href="http://exist-db.org/exist/apps/doc/lucene">documentation</a>
+            sur la recherche plein texte avec Lucène.</p>
+            <p>Se référer aussi à <a href="https://en.wikibooks.org/wiki/XQuery/Keyword_Search">
+            cet article</a>.</p>
+            
+            <h2>Exercices</h2>
+            <ol>
+            <li>Modifier la fonction <code>bjr:greeting-user</code> de façon à ce que
+            celle-ci renvoie le prénom en majuscule ou minuscule selon le choix de l'utilisateur.
+            </li>
+            <li>Créer un nouveau fichier <code>affichage.html</code>. À partir du fichier <code>files.xml</code> générer une table des matières avec
+                des pointeurs sur les fichiers dans cette page. C'est à dire que le contenu
+                (on peut se satisfaire du titre pour l'instant) du fichier xml sera affiché sur cette page.
+                Cependant, on ne verra que l'affichage d'un seul fichier et la table des matières.
+                Pour effectuer cette exercice, utiliser les paramètres d'urls.
+            </li>
+            <li>En se basant sur l'article de Wikibooks, créer un petit concordancier.
+            Vous pouvez dans un premier temps <i>hardcodés</i> le mot puis ensuite
+            ajouter un formulaire. Vous êtes libres de choisir le texte.</li>
+            </ol>
+        </div>
+    </div>
+</div>
+
