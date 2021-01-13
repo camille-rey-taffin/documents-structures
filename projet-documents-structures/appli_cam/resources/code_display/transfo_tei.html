@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- HTML generated using hilite.me -->
+<div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;">
+    <pre style="margin: 0; line-height: 125%">
+        <span style="color: #008800; font-weight: bold">&lt;xsl:stylesheet</span> <span style="color: #0000CC">xmlns=</span>
+        <span style="background-color: #fff0f0">"http://www.w3.org/1999/xhtml"</span> <span style="color: #0000CC">xmlns:xsl=</span>
+        <span style="background-color: #fff0f0">"http://www.w3.org/1999/XSL/Transform"</span> <span style="color: #0000CC">xmlns:tei=</span>
+        <span style="background-color: #fff0f0">"http://www.tei-c.org/ns/1.0"</span> <span style="color: #0000CC">exclude-result-prefixes=</span>
+        <span style="background-color: #fff0f0">"tei"</span> <span style="color: #0000CC">version=</span>
+        <span style="background-color: #fff0f0">"2.0"</span>
+        <span style="color: #007700">&gt;</span>
+    <span style="color: #008800; font-weight: bold">&lt;xsl:output</span> <span style="color: #0000CC">method=</span>
+        <span style="background-color: #fff0f0">"html"</span> <span style="color: #0000CC">encoding=</span>
+        <span style="background-color: #fff0f0">"UTF-8"</span> <span style="color: #0000CC">indent=</span>
+        <span style="background-color: #fff0f0">"yes"</span>
+        <span style="color: #007700">/&gt;</span>
+    <span style="color: #008800; font-weight: bold">&lt;xsl:template</span> <span style="color: #0000CC">match=</span>
+        <span style="background-color: #fff0f0">"/tei:TEI"</span>
+        <span style="color: #007700">&gt;</span>
+        <span style="color: #007700">&lt;html&gt;</span>
+            <span style="color: #008800; font-weight: bold">&lt;xsl:apply-templates</span>
+        <span style="color: #007700">/&gt;</span>
+        <span style="color: #007700">&lt;/html&gt;</span>
+    <span style="color: #008800; font-weight: bold">&lt;/xsl:template&gt;</span>
+    <span style="color: #008800; font-weight: bold">&lt;xsl:template</span> <span style="color: #0000CC">match=</span>
+        <span style="background-color: #fff0f0">"tei:teiHeader"</span>
+        <span style="color: #007700">&gt;</span>
+        <span style="color: #007700">&lt;table</span> <span style="color: #0000CC">class=</span>
+        <span style="background-color: #fff0f0">"table table-striped"</span>
+        <span style="color: #007700">&gt;</span>
+            <span style="color: #007700">&lt;tbody&gt;</span>
+                <span style="color: #007700">&lt;tr&gt;&lt;th&gt;</span>Titre<span style="color: #007700">&lt;/th&gt;&lt;td&gt;</span>
+        <span style="color: #008800; font-weight: bold">&lt;xsl:value-of</span> <span style="color: #0000CC">select=</span>
+        <span style="background-color: #fff0f0">".//tei:title"</span>
+        <span style="color: #007700">/&gt;&lt;/td&gt;&lt;/tr&gt;</span>
+                <span style="color: #007700">&lt;tr&gt;&lt;th&gt;</span>Autheur<span style="color: #007700">&lt;/th&gt;&lt;td&gt;</span>
+        <span style="color: #008800; font-weight: bold">&lt;xsl:value-of</span> <span style="color: #0000CC">select=</span>
+        <span style="background-color: #fff0f0">".//tei:author"</span>
+        <span style="color: #007700">/&gt;&lt;/td&gt;&lt;/tr&gt;</span>
+                <span style="color: #007700">&lt;tr&gt;&lt;th&gt;</span>Licence<span style="color: #007700">&lt;/th&gt;&lt;td&gt;&lt;a</span> <span style="color: #0000CC">href=</span>
+        <span style="background-color: #fff0f0">"{.//tei:licence/@target}"</span>
+        <span style="color: #007700">&gt;</span>
+        <span style="color: #008800; font-weight: bold">&lt;xsl:value-of</span> <span style="color: #0000CC">select=</span>
+        <span style="background-color: #fff0f0">".//tei:licence/@target"</span>
+        <span style="color: #007700">/&gt;&lt;/a&gt;&lt;/td&gt;&lt;/tr&gt;</span>
+                <span style="color: #007700">&lt;tr&gt;&lt;th&gt;</span>Date de Publication<span style="color: #007700">&lt;/th&gt;&lt;td&gt;</span>
+        <span style="color: #008800; font-weight: bold">&lt;xsl:value-of</span> <span style="color: #0000CC">select=</span>
+        <span style="background-color: #fff0f0">".//tei:publicationStmt/tei:date"</span>
+        <span style="color: #007700">/&gt;&lt;/td&gt;&lt;/tr&gt;</span>
+                <span style="color: #007700">&lt;tr&gt;&lt;th&gt;</span>Source<span style="color: #007700">&lt;/th&gt;&lt;td&gt;&lt;a</span> <span style="color: #0000CC">href=</span>
+        <span style="background-color: #fff0f0">"{.//tei:bibl/@source}"</span>
+        <span style="color: #007700">&gt;</span>
+        <span style="color: #008800; font-weight: bold">&lt;xsl:value-of</span> <span style="color: #0000CC">select=</span>
+        <span style="background-color: #fff0f0">".//tei:bibl/@source"</span>
+        <span style="color: #007700">/&gt;&lt;/a&gt;&lt;/td&gt;&lt;/tr&gt;</span>
+                <span style="color: #007700">&lt;tr&gt;&lt;th&gt;</span>Description<span style="color: #007700">&lt;/th&gt;&lt;td&gt;</span>
+        <span style="color: #008800; font-weight: bold">&lt;xsl:value-of</span> <span style="color: #0000CC">select=</span>
+        <span style="background-color: #fff0f0">".//tei:projectDesc/tei:p"</span>
+        <span style="color: #007700">/&gt;&lt;/td&gt;&lt;/tr&gt;</span>
+                <span style="color: #007700">&lt;tr&gt;&lt;th&gt;</span>Date de la source<span style="color: #007700">&lt;/th&gt;&lt;td&gt;</span>
+        <span style="color: #008800; font-weight: bold">&lt;xsl:value-of</span> <span style="color: #0000CC">select=</span>
+        <span style="background-color: #fff0f0">".//tei:creation/tei:date"</span>
+        <span style="color: #007700">/&gt;&lt;/td&gt;&lt;/tr&gt;</span>
+            <span style="color: #007700">&lt;/tbody&gt;</span>
+        <span style="color: #007700">&lt;/table&gt;</span>
+    <span style="color: #008800; font-weight: bold">&lt;/xsl:template&gt;</span>
+
+    <span style="color: #008800; font-weight: bold">&lt;xsl:template</span> <span style="color: #0000CC">match=</span>
+        <span style="background-color: #fff0f0">"tei:text"</span>
+        <span style="color: #007700">&gt;</span>
+        <span style="color: #008800; font-weight: bold">&lt;xsl:apply-templates</span>
+        <span style="color: #007700">/&gt;</span>
+    <span style="color: #008800; font-weight: bold">&lt;/xsl:template&gt;</span>
+
+    <span style="color: #008800; font-weight: bold">&lt;xsl:template</span> <span style="color: #0000CC">match=</span>
+        <span style="background-color: #fff0f0">"tei:head"</span>
+        <span style="color: #007700">&gt;</span>
+        <span style="color: #008800; font-weight: bold">&lt;xsl:choose</span>
+        <span style="color: #007700">&gt;</span>
+            <span style="color: #008800; font-weight: bold">&lt;xsl:when</span> <span style="color: #0000CC">test=</span>
+        <span style="background-color: #fff0f0">"./parent::tei:body"</span>
+        <span style="color: #007700">&gt;</span>
+                <span style="color: #007700">&lt;h2&gt;</span>
+        <span style="color: #008800; font-weight: bold">&lt;xsl:apply-templates</span>
+        <span style="color: #007700">/&gt;&lt;/h2&gt;</span>
+            <span style="color: #008800; font-weight: bold">&lt;/xsl:when&gt;</span>
+            <span style="color: #008800; font-weight: bold">&lt;xsl:when</span> <span style="color: #0000CC">test=</span>
+        <span style="background-color: #fff0f0">"./parent::*/@n='1'"</span>
+        <span style="color: #007700">&gt;</span>
+                <span style="color: #007700">&lt;h3&gt;</span>
+        <span style="color: #008800; font-weight: bold">&lt;xsl:apply-templates</span>
+        <span style="color: #007700">/&gt;&lt;/h3&gt;</span>
+            <span style="color: #008800; font-weight: bold">&lt;/xsl:when&gt;</span>
+            <span style="color: #008800; font-weight: bold">&lt;xsl:when</span> <span style="color: #0000CC">test=</span>
+        <span style="background-color: #fff0f0">"./parent::*/@n='2'"</span>
+        <span style="color: #007700">&gt;</span>
+                <span style="color: #007700">&lt;h4&gt;</span>
+        <span style="color: #008800; font-weight: bold">&lt;xsl:apply-templates</span>
+        <span style="color: #007700">/&gt;&lt;/h4&gt;</span>
+            <span style="color: #008800; font-weight: bold">&lt;/xsl:when&gt;</span>
+            <span style="color: #008800; font-weight: bold">&lt;xsl:when</span> <span style="color: #0000CC">test=</span>
+        <span style="background-color: #fff0f0">"./parent::*/@n='3'"</span>
+        <span style="color: #007700">&gt;</span>
+                <span style="color: #007700">&lt;h5&gt;</span>
+        <span style="color: #008800; font-weight: bold">&lt;xsl:apply-templates</span>
+        <span style="color: #007700">/&gt;&lt;/h5&gt;</span>
+            <span style="color: #008800; font-weight: bold">&lt;/xsl:when&gt;</span>
+            <span style="color: #008800; font-weight: bold">&lt;xsl:otherwise</span>
+        <span style="color: #007700">&gt;</span>
+                <span style="color: #007700">&lt;h5&gt;</span>
+        <span style="color: #008800; font-weight: bold">&lt;xsl:apply-templates</span>
+        <span style="color: #007700">/&gt;&lt;/h5&gt;</span>
+            <span style="color: #008800; font-weight: bold">&lt;/xsl:otherwise&gt;</span>
+        <span style="color: #008800; font-weight: bold">&lt;/xsl:choose&gt;</span>
+    <span style="color: #008800; font-weight: bold">&lt;/xsl:template&gt;</span>
+
+    <span style="color: #008800; font-weight: bold">&lt;xsl:template</span> <span style="color: #0000CC">match=</span>
+        <span style="background-color: #fff0f0">"tei:p"</span>
+        <span style="color: #007700">&gt;</span>
+        <span style="color: #007700">&lt;p</span> <span style="color: #0000CC">style=</span>
+        <span style="background-color: #fff0f0">"text-align: justify"</span>
+        <span style="color: #007700">&gt;</span>
+        <span style="color: #008800; font-weight: bold">&lt;xsl:apply-templates</span>
+        <span style="color: #007700">/&gt;&lt;/p&gt;</span>
+    <span style="color: #008800; font-weight: bold">&lt;/xsl:template&gt;</span>
+
+    <span style="color: #008800; font-weight: bold">&lt;xsl:template</span> <span style="color: #0000CC">match=</span>
+        <span style="background-color: #fff0f0">"tei:hi"</span>
+        <span style="color: #007700">&gt;</span>
+        <span style="color: #008800; font-weight: bold">&lt;xsl:choose</span>
+        <span style="color: #007700">&gt;</span>
+            <span style="color: #008800; font-weight: bold">&lt;xsl:when</span> <span style="color: #0000CC">test=</span>
+        <span style="background-color: #fff0f0">"@rend='italic'"</span>
+        <span style="color: #007700">&gt;</span>
+                <span style="color: #007700">&lt;i&gt;</span>
+        <span style="color: #008800; font-weight: bold">&lt;xsl:apply-templates</span>
+        <span style="color: #007700">/&gt;&lt;/i&gt;</span>
+            <span style="color: #008800; font-weight: bold">&lt;/xsl:when&gt;</span>
+            <span style="color: #008800; font-weight: bold">&lt;xsl:when</span> <span style="color: #0000CC">test=</span>
+        <span style="background-color: #fff0f0">"@rend='bold'"</span>
+        <span style="color: #007700">&gt;</span>
+                <span style="color: #007700">&lt;b&gt;</span>
+        <span style="color: #008800; font-weight: bold">&lt;xsl:apply-templates</span>
+        <span style="color: #007700">/&gt;&lt;/b&gt;</span>
+            <span style="color: #008800; font-weight: bold">&lt;/xsl:when&gt;</span>
+        <span style="color: #008800; font-weight: bold">&lt;/xsl:choose&gt;</span>
+    <span style="color: #008800; font-weight: bold">&lt;/xsl:template&gt;</span>
+
+    <span style="color: #008800; font-weight: bold">&lt;xsl:template</span> <span style="color: #0000CC">match=</span>
+        <span style="background-color: #fff0f0">"tei:quote"</span>
+        <span style="color: #007700">&gt;</span>
+        <span style="color: #007700">&lt;span</span> <span style="color: #0000CC">style=</span>
+        <span style="background-color: #fff0f0">"color:grey"</span>
+        <span style="color: #007700">&gt;</span>
+        <span style="color: #008800; font-weight: bold">&lt;xsl:apply-templates</span>
+        <span style="color: #007700">/&gt;&lt;/span&gt;</span>
+    <span style="color: #008800; font-weight: bold">&lt;/xsl:template&gt;</span>
+
+<span style="color: #008800; font-weight: bold">&lt;/xsl:stylesheet&gt;</span>
+</pre>
+</div>

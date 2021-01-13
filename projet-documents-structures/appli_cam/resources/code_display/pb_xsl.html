@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- HTML generated using hilite.me -->
+<div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;">
+    <pre style="margin: 0; line-height: 125%">
+        <span style="color: #008800; font-weight: bold">&lt;xsl:template</span> <span style="color: #0000CC">match=</span>
+        <span style="background-color: #fff0f0">"text:h"</span>
+        <span style="color: #007700">&gt;</span>
+        <span style="color: #008800; font-weight: bold">&lt;xsl:variable</span> <span style="color: #0000CC">name=</span>
+        <span style="background-color: #fff0f0">"header-id"</span> <span style="color: #0000CC">select=</span>
+        <span style="background-color: #fff0f0">"generate-id(.)"</span>
+        <span style="color: #007700">/&gt;</span>
+        <span style="color: #008800; font-weight: bold">&lt;xsl:variable</span> <span style="color: #0000CC">name=</span>
+        <span style="background-color: #fff0f0">"header-niveau"</span> <span style="color: #0000CC">select=</span>
+        <span style="background-color: #fff0f0">"@text:outline-level"</span>
+        <span style="color: #007700">/&gt;</span>
+        <span style="color: #007700">&lt;div&gt;</span>
+            <span style="color: #008800; font-weight: bold">&lt;xsl:attribute</span> <span style="color: #0000CC">name=</span>
+        <span style="background-color: #fff0f0">"n"</span>
+        <span style="color: #007700">&gt;</span>
+        <span style="color: #008800; font-weight: bold">&lt;xsl:value-of</span> <span style="color: #0000CC">select=</span>
+        <span style="background-color: #fff0f0">"./@text:outline-level"</span>
+        <span style="color: #007700">/&gt;</span>
+        <span style="color: #008800; font-weight: bold">&lt;/xsl:attribute&gt;</span>
+            <span style="color: #007700">&lt;head&gt;</span>
+                <span style="color: #008800; font-weight: bold">&lt;xsl:value-of</span> <span style="color: #0000CC">select=</span>
+        <span style="background-color: #fff0f0">"."</span>
+        <span style="color: #007700">/&gt;</span>
+            <span style="color: #007700">&lt;/head&gt;</span>
+            <span style="color: #888888">&lt;!--Ma solution pour transformer la structure plate en structure hiérarchique - dans la &lt;div&gt;, : </span>
+<span style="color: #888888">                traiter tous les éléments &lt;text:p&gt; jusqu'au prochain élément "text:h" </span>
+<span style="color: #888888">                (ce qui revient à traiter tous les éléments &lt;text:p&gt; dont le &lt;text:h&gt; courant est le preceding &lt;text:h&gt; le plus proche)--&gt;</span>
+            <span style="color: #008800; font-weight: bold">&lt;xsl:apply-templates</span> <span style="color: #0000CC">select=</span>
+        <span style="background-color: #fff0f0">"following-sibling::text:p[generate-id(preceding-sibling::text:h[1]) = $header-id]"</span> <span style="color: #007700">/&gt;</span>
+            <span style="color: #888888">&lt;!--Traiter tous les prochains éléments &lt;text:h&gt; de niveau directement supérieur (n+1), et dont le &lt;text:h&gt; courant est le preceding &lt;text:h&gt; de niveau n le plus proche--&gt;</span>
+            <span style="color: #008800; font-weight: bold">&lt;xsl:apply-templates</span> <span style="color: #0000CC">select=</span>
+        <span style="background-color: #fff0f0">"following-sibling::text:h[number(@text:outline-level)=number($header-niveau)+1 and (generate-id(preceding-sibling::text:h[@text:outline-level=$header-niveau][1]) = $header-id)]"</span> <span style="color: #007700">/&gt;</span>
+        <span style="color: #007700">&lt;/div&gt;</span>
+    <span style="color: #008800; font-weight: bold">&lt;/xsl:template&gt;</span>
+</pre>
+</div>

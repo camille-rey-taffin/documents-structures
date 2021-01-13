@@ -1,0 +1,217 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- HTML generated using hilite.me -->
+<div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;">
+    <pre style="margin: 0; line-height: 125%">
+        <span style="color: #557799">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span>
+<span style="color: #557799">&lt;?xml-model href="resources/grammaire_index.rng" type="application/xml" schematypens="http://relaxng.org/ns/structure/1.0"?&gt;</span>
+
+<span style="color: #007700">&lt;page</span> <span style="color: #0000CC">titre=</span>
+        <span style="background-color: #fff0f0">"presentation"</span>
+        <span style="color: #007700">&gt;</span>
+    <span style="color: #007700">&lt;main_titre&gt;</span> CamCam Project<span style="color: #007700">&lt;/main_titre&gt;</span>
+    <span style="color: #007700">&lt;sous_titre&gt;</span> Un projet fait avec le coeur (et Bootstrap) <span style="color: #007700">&lt;/sous_titre&gt;</span>
+    <span style="color: #007700">&lt;partie</span> <span style="color: #0000CC">titre=</span>
+        <span style="background-color: #fff0f0">"Présentation de projet"</span>
+        <span style="color: #007700">&gt;</span>
+        <span style="color: #007700">&lt;p&gt;</span>L’objectif de ce projet est de réaliser une chaîne de traitement pour la publication de documents en ligne. À partir de documents qui nous sont fournis, nous proposons un site web pour présenter le contenu de ces documents et interagir avec.<span style="color: #007700">&lt;/p&gt;</span>
+        <span style="color: #007700">&lt;p&gt;</span>Deux grandes étapes sont mises en oeuvre.<span style="color: #007700">&lt;/p&gt;</span>
+        <span style="color: #007700">&lt;titre</span> <span style="color: #0000CC">n=</span>
+        <span style="background-color: #fff0f0">"1"</span>
+        <span style="color: #007700">&gt;</span> Partie1 <span style="color: #007700">&lt;/titre&gt;</span>
+        <span style="color: #007700">&lt;p&gt;</span>La première étape consiste à transformer les documents au format OpenDocument en document XML selon le standard de la <span style="color: #007700">&lt;lien</span> <span style="color: #0000CC">source=</span>
+        <span style="background-color: #fff0f0">"https://tei-c.org"</span>
+        <span style="color: #007700">&gt;</span>Text Encoding Initiative<span style="color: #007700">&lt;/lien&gt;</span> (TEI). Pour cela, son schéma nous est communiqué afin de nous permettre de valider la structure.<span style="color: #007700">&lt;/p&gt;</span>
+        <span style="color: #007700">&lt;titre</span> <span style="color: #0000CC">n=</span>
+        <span style="background-color: #fff0f0">"2"</span>
+        <span style="color: #007700">&gt;</span>1 - Récupérer les XML des documents ODT<span style="color: #007700">&lt;/titre&gt;</span>
+        <span style="color: #007700">&lt;p&gt;</span> Le format OpenDocument est une archive de plusieurs fichiers XML. Pour récupérer ces fichiers XML, il suffit de procéder à une opération d'extraction, dans la ligne de commande par exemple, avec la commande : UNZIP file.odt -d file<span style="color: #007700">&lt;/p&gt;</span>
+        <span style="color: #007700">&lt;titre</span> <span style="color: #0000CC">n=</span>
+        <span style="background-color: #fff0f0">"2"</span>
+        <span style="color: #007700">&gt;</span>2 - Extraire le contenu du texte et ses métadonnées<span style="color: #007700">&lt;/titre&gt;</span>
+        <span style="color: #007700">&lt;p&gt;</span>On peut extraire le contenu via une transformation XSLT, à partir des documents <span style="color: #007700">&lt;ital&gt;</span>content.xml<span style="color: #007700">&lt;/ital&gt;</span> pour le contenu, et <span style="color: #007700">&lt;ital&gt;</span>meta.xml<span style="color: #007700">&lt;/ital&gt;</span> pour les métadonnées.<span style="color: #007700">&lt;/p&gt;</span>
+        <span style="color: #007700">&lt;titre</span> <span style="color: #0000CC">n=</span>
+        <span style="background-color: #fff0f0">"2"</span>
+        <span style="color: #007700">&gt;</span>3 - Générer un document au format TEI<span style="color: #007700">&lt;/titre&gt;</span>
+        <span style="color: #007700">&lt;p&gt;</span> Une fois le contenu à extraire identifié, il faut savoir quoi en faire. Pour savoir comment structurer le document XML en sortie, on peut se référer au schéma de la TEI, et à la doc de la TEI disponible sur internet. 
+            On exploite donc cette structure dans notre feuille de style XSLT pour extraire le contenu et les métadonnées du document original, et les "redisposer" selon la structure TEI, avec les bons noms de balises. Le schéma de la TEI
+            est indiqué dans le document en sortie, afin de faciliter la validation.
+            Les deux feuilles de style (deux versions, voir section suivante) sont disponibles dans l'archive du projet dans <span style="color: #007700">&lt;imp&gt;</span>/transformation/<span style="color: #007700">&lt;/imp&gt;&lt;/p&gt;</span>
+        <span style="color: #007700">&lt;image</span> <span style="color: #0000CC">source=</span>
+        <span style="background-color: #fff0f0">"resources/images/input.png"</span> <span style="color: #0000CC">legende=</span>
+        <span style="background-color: #fff0f0">"Exemple d'odt en input (Madame Bovary)"</span>
+        <span style="color: #007700">/&gt;</span>
+        <span style="color: #007700">&lt;image</span> <span style="color: #0000CC">source=</span>
+        <span style="background-color: #fff0f0">"resources/images/output.png"</span> <span style="color: #0000CC">legende=</span>
+        <span style="background-color: #fff0f0">"Exemple de XML en output (Madame Bovary)"</span>
+        <span style="color: #007700">/&gt;</span>
+        <span style="color: #007700">&lt;titre</span> <span style="color: #0000CC">n=</span>
+        <span style="background-color: #fff0f0">"2"</span>
+        <span style="color: #007700">&gt;</span>4 - Appliquer à tous les documents<span style="color: #007700">&lt;/titre&gt;</span>
+        <span style="color: #007700">&lt;p&gt;</span> J'ai fait deux version pour la feuille de style. <span style="color: #007700">&lt;/p&gt;</span>
+        <span style="color: #007700">&lt;p&gt;</span> La version 1 <span style="color: #007700">&lt;imp&gt;</span>/transformation/transformation.xsl<span style="color: #007700">&lt;/imp&gt;</span> ne permet de traiter qu'un document à la fois, car il faut manuellement
+         modifier la valeur de la variable de répertoire (contenant content.xml et meta.xml) avant chaque lancement de la transformation sur un document content.xml. Elle implique donc
+         d'avoir réalisé la décompression de l'archive odt au préalable.
+         Cette version vise donc à être utilisée pour générer les documents TEI un à la fois, depuis Oxygen par exemple.<span style="color: #007700">&lt;/p&gt;</span>
+        <span style="color: #007700">&lt;p&gt;</span> La version 2 <span style="color: #007700">&lt;imp&gt;</span>/transformation/transformationV2.xsl<span style="color: #007700">&lt;/imp&gt;</span> vise à être appelée à partir d'un script python (<span style="color: #007700">&lt;imp&gt;</span>/transformation/script_transfo.py<span style="color: #007700">&lt;/imp&gt;</span>), qui traduit automatiquement tous les fichiers odt du
+        répertoire input et écrit les résultats au nom correspondant .xml dans le répertoire output. Ce script va chercher lui-même dans les documents XML archivés dans un document odt,
+        il n'y a donc pas besoin d'effectuer de décompression au préalable. Ce script est plus pratique car il suffit de le lancer en ligne de commande depuis le répertoire où il se trouve
+         avec "python script_transfo.py" et il effectue toutes les transformations.<span style="color: #007700">&lt;/p&gt;</span>
+        <span style="color: #007700">&lt;p&gt;</span> Le script python<span style="color: #007700">&lt;/p&gt;</span>
+        <span style="color: #007700">&lt;cadre</span> <span style="color: #0000CC">source=</span>
+        <span style="background-color: #fff0f0">"resources/code_display/script_transfo.html"</span>
+        <span style="color: #007700">/&gt;</span>
+        <span style="color: #007700">&lt;p&gt;</span> Le seul passage qui diffère entre la V1 et la V2 de la feuille XSLT :<span style="color: #007700">&lt;/p&gt;</span>
+        <span style="color: #007700">&lt;image</span> <span style="color: #0000CC">source=</span>
+        <span style="background-color: #fff0f0">"resources/images/xsltv1.png"</span> <span style="color: #0000CC">legende=</span>
+        <span style="background-color: #fff0f0">"Version 1"</span>
+        <span style="color: #007700">/&gt;</span>
+        <span style="color: #007700">&lt;image</span> <span style="color: #0000CC">source=</span>
+        <span style="background-color: #fff0f0">"resources/images/xsltv2.png"</span> <span style="color: #0000CC">legende=</span>
+        <span style="background-color: #fff0f0">"Version 2"</span>
+        <span style="color: #007700">/&gt;</span>
+        <span style="color: #007700">&lt;titre</span> <span style="color: #0000CC">n=</span>
+        <span style="background-color: #fff0f0">"1"</span>
+        <span style="color: #007700">&gt;</span> Partie2 <span style="color: #007700">&lt;/titre&gt;</span>
+        <span style="color: #007700">&lt;p&gt;</span>Les XML ainsi obtenus sont stockés dans une base de données XML (<span style="color: #007700">&lt;lien</span> <span style="color: #0000CC">source=</span>
+        <span style="background-color: #fff0f0">"http://exist-db.org/exist/apps/homepage/index.html"</span>
+        <span style="color: #007700">&gt;</span>eXist- db<span style="color: #007700">&lt;/lien&gt;</span>). 
+            À partir de celle-ci, nous devons réaliser un site internet à l’aide de xquery et xslt. 
+            Sur ce site seront présentées trois interfaces : une pour la recherche d’informations dans les documents, une autre pour afficher les documents mis en page et finalement une page pour présenter le proje.t<span style="color: #007700">&lt;/p&gt;</span>
+        <span style="color: #007700">&lt;titre</span> <span style="color: #0000CC">n=</span>
+        <span style="background-color: #fff0f0">"2"</span>
+        <span style="color: #007700">&gt;</span>1 - Installer ExistDb et créer une application<span style="color: #007700">&lt;/titre&gt;</span>
+        <span style="color: #007700">&lt;p&gt;</span>L'installation et la création d'une application ont été vues en cours, mais on peut simplement suivre la documentation d'eXist-db pour les faire. Une fois l'application créée, dans une collection "data", on ajoute manuellement les 3 documents XML générés dans la partie précédente.
+        J'ai personnellement décidé de connecter la base eXist-db à Oxygen, et ai travaillé quasi-exclusivement depuis Oxygen pour l'édition des documents de l'app (sauf pour créer un fichier collection.xconf, pour l'indexation).<span style="color: #007700">&lt;/p&gt;</span>
+        <span style="color: #007700">&lt;titre</span> <span style="color: #0000CC">n=</span>
+        <span style="background-color: #fff0f0">"2"</span>
+        <span style="color: #007700">&gt;</span>2 - Créer une page de présentation<span style="color: #007700">&lt;/titre&gt;</span>
+        <span style="color: #007700">&lt;p&gt;</span>La page de présentation (présente page) doit être le résultat d'une transformation XSLT sur un document XML. Ce document XML doit être validé par un schéma Relax-NG que nous devons définir. <span style="color: #007700">&lt;/p&gt;</span>
+        <span style="color: #007700">&lt;titre</span> <span style="color: #0000CC">n=</span>
+        <span style="background-color: #fff0f0">"2"</span>
+        <span style="color: #007700">&gt;</span>3 - Créer une page d'affichage des documents<span style="color: #007700">&lt;/titre&gt;</span>
+        <span style="color: #007700">&lt;p&gt;</span>La page d'affichage des documents doit permettre d'afficher les documents XML générés à l'étape précédente. Le rendu est libre dans sa forme, mais doit être effectué avec XSLT ou/et xQuery. <span style="color: #007700">&lt;/p&gt;</span>
+        <span style="color: #007700">&lt;titre</span> <span style="color: #0000CC">n=</span>
+        <span style="background-color: #fff0f0">"2"</span>
+        <span style="color: #007700">&gt;</span>4 - Créer une page de requêtes<span style="color: #007700">&lt;/titre&gt;</span>
+        <span style="color: #007700">&lt;p&gt;</span>La page de requêtes doit permettre de questionner la base de données : on peut lister les documents selon certaines métadonnées, ou bien chercher des mots clés dans les documents, avec ou sans filtre(s) de métadonnées.<span style="color: #007700">&lt;/p&gt;</span>
+    <span style="color: #007700">&lt;/partie&gt;</span>
+    <span style="color: #007700">&lt;partie</span> <span style="color: #0000CC">titre=</span>
+        <span style="background-color: #fff0f0">"Présentation du site"</span>
+        <span style="color: #007700">&gt;</span>
+        <span style="color: #007700">&lt;titre</span> <span style="color: #0000CC">n=</span>
+        <span style="background-color: #fff0f0">"1"</span>
+        <span style="color: #007700">&gt;</span> Généralités sur le site <span style="color: #007700">&lt;/titre&gt;</span>
+        <span style="color: #007700">&lt;p&gt;</span>Pour avoir un site un peu esthétique, j'ai utilisé un template <span style="color: #007700">&lt;lien</span> <span style="color: #0000CC">source=</span>
+        <span style="background-color: #fff0f0">"https://startbootstrap.com/themes"</span>
+        <span style="color: #007700">&gt;</span>Bootstrap<span style="color: #007700">&lt;/lien&gt;</span> dont j'ai réutilisé certains éléments.
+            J'ai également utilisé <span style="color: #007700">&lt;lien</span> <span style="color: #0000CC">source=</span>
+        <span style="background-color: #fff0f0">"https://www.bitmoji.com/"</span>
+        <span style="color: #007700">&gt;</span>Bitmoji<span style="color: #007700">&lt;/lien&gt;</span> pour les avatars. Chaque page (index.html, page2.html, page3.html) a pour élément racine un élément de type "div",
+            qui  a un attribut class de valeur "templates:surround?with=templates/page.html<span style="color: #880000; font-weight: bold">&amp;amp;</span>at=content". Cela permet à chaque page d'être entourée par des éléments définis dans le <span style="color: #007700">&lt;imp&gt;</span>/templates/page.html<span style="color: #007700">&lt;/imp&gt;</span>. Ici, cela correspond à la structure générale du site qui est répétée à chaque page (menu, copyright...).<span style="color: #007700">&lt;/p&gt;</span>
+        <span style="color: #007700">&lt;titre</span> <span style="color: #0000CC">n=</span>
+        <span style="background-color: #fff0f0">"2"</span>
+        <span style="color: #007700">&gt;</span> Page de présentation <span style="color: #007700">&lt;/titre&gt;</span>
+        <span style="color: #007700">&lt;p&gt;</span>La page de présentation <span style="color: #007700">&lt;imp&gt;</span>/index.html<span style="color: #007700">&lt;/imp&gt;</span> est à la base générée (au préalable avec Oxygen) à partir de deux fichiers : <span style="color: #007700">&lt;imp&gt;</span>resources/archive_index/index.xml<span style="color: #007700">&lt;/imp&gt;</span> et <span style="color: #007700">&lt;imp&gt;</span>resources/archive_index/index_transfo.xsl<span style="color: #007700">&lt;/imp&gt;</span>. La structure du document xml est très simple :<span style="color: #007700">&lt;/p&gt;</span>
+        <span style="color: #007700">&lt;cadre</span> <span style="color: #0000CC">source=</span>
+        <span style="background-color: #fff0f0">"resources/code_display/index.html"</span>
+        <span style="color: #007700">/&gt;</span>
+        <span style="color: #007700">&lt;p&gt;</span>La transformation est effectuée sur ce document pour qu'il soit rendu dans le même style que le reste du site, grâce à cette feuille de transformation : <span style="color: #007700">&lt;/p&gt;</span>
+        <span style="color: #007700">&lt;cadre</span> <span style="color: #0000CC">source=</span>
+        <span style="background-color: #fff0f0">"resources/code_display/index_transfo.html"</span>
+        <span style="color: #007700">/&gt;</span>
+        <span style="color: #007700">&lt;p&gt;</span>Le document index.xml est validé par une grammaire RelaxNG disponible dans <span style="color: #007700">&lt;imp&gt;</span>/resources/grammaire_index.rng<span style="color: #007700">&lt;/imp&gt;&lt;/p&gt;</span>
+        <span style="color: #007700">&lt;titre</span> <span style="color: #0000CC">n=</span>
+        <span style="background-color: #fff0f0">"2"</span>
+        <span style="color: #007700">&gt;</span> Page de requête <span style="color: #007700">&lt;/titre&gt;</span>
+        <span style="color: #007700">&lt;p&gt;</span>La page de requête permet d'effectuer des requêtes sur les livres au format XML TEI contenus dans la base de données. Les requêtes peuvent être faites avec ou sans mot-clés, et avec ou sans filtre(s) (indépendants de la case). Les filtres sont superposables. 
+            Par exemple, si on effectue la requête suivante, qui ne contient pas de mot-clé : <span style="color: #007700">&lt;/p&gt;</span>
+        <span style="color: #007700">&lt;p&gt;</span>Les résultats renvoyés seront la liste des documents dont les métadonnées correspondent aux filtres<span style="color: #007700">&lt;/p&gt;</span>
+        <span style="color: #007700">&lt;image</span> <span style="color: #0000CC">source=</span>
+        <span style="background-color: #fff0f0">"resources/images/requete1.png"</span> <span style="color: #0000CC">legende=</span>
+        <span style="background-color: #fff0f0">"Requete uniquement filtres"</span>
+        <span style="color: #007700">/&gt;</span>
+        <span style="color: #007700">&lt;image</span> <span style="color: #0000CC">source=</span>
+        <span style="background-color: #fff0f0">"resources/images/resultat1.png"</span> <span style="color: #0000CC">legende=</span>
+        <span style="background-color: #fff0f0">"Résultats"</span>
+        <span style="color: #007700">/&gt;</span>
+        <span style="color: #007700">&lt;p&gt;</span>Pour une requête de mot-clé :<span style="color: #007700">&lt;/p&gt;</span>
+        <span style="color: #007700">&lt;image</span> <span style="color: #0000CC">source=</span>
+        <span style="background-color: #fff0f0">"resources/images/requete2.png"</span> <span style="color: #0000CC">legende=</span>
+        <span style="background-color: #fff0f0">"Requete mot-clé SANS filtres"</span>
+        <span style="color: #007700">/&gt;</span>
+        <span style="color: #007700">&lt;p&gt;</span>Les résultats renvoyés seront les mots-clés trouvés dans leur contexte, ainsi que le document dans lequel ils ont été trouvés. Ils sont ordonnés par "match score" décroissant : <span style="color: #007700">&lt;/p&gt;</span>
+        <span style="color: #007700">&lt;image</span> <span style="color: #0000CC">source=</span>
+        <span style="background-color: #fff0f0">"resources/images/resultat2.png"</span> <span style="color: #0000CC">legende=</span>
+        <span style="background-color: #fff0f0">"Résultats"</span>
+        <span style="color: #007700">/&gt;</span>
+        <span style="color: #007700">&lt;p&gt;</span>Pour une requête avec mot-clé et filtres :<span style="color: #007700">&lt;/p&gt;</span>
+        <span style="color: #007700">&lt;image</span> <span style="color: #0000CC">source=</span>
+        <span style="background-color: #fff0f0">"resources/images/requete3.png"</span> <span style="color: #0000CC">legende=</span>
+        <span style="background-color: #fff0f0">"Requete mot-clé AVEC filtres"</span>
+        <span style="color: #007700">/&gt;</span>
+        <span style="color: #007700">&lt;image</span> <span style="color: #0000CC">source=</span>
+        <span style="background-color: #fff0f0">"resources/images/resultat3.png"</span> <span style="color: #0000CC">legende=</span>
+        <span style="background-color: #fff0f0">"Résultats"</span>
+        <span style="color: #007700">/&gt;</span>
+        <span style="color: #007700">&lt;p&gt;</span>Ces requêtes sont effectuées grâce à une fonction app:chercher() créée dans <span style="color: #007700">&lt;imp&gt;</span>modules/app.xql<span style="color: #007700">&lt;/imp&gt;</span> qui utilise un filtre contains() pour les métadonnées, et ft-query() pour les mots-clés. 
+            Cela implique d'avoir indexé les données au préalable. A NOTER : Les métadonnées étant filtrées avec contains(), le filtre s'effectue en fonction de la présence ou non du segment recherché dans la métadonnée évaluée. Par exemple "mil" pour auteur renverra Emily Brontë.<span style="color: #007700">&lt;/p&gt;</span>
+        <span style="color: #007700">&lt;titre</span> <span style="color: #0000CC">n=</span>
+        <span style="background-color: #fff0f0">"2"</span>
+        <span style="color: #007700">&gt;</span> Page des documents <span style="color: #007700">&lt;/titre&gt;</span>
+        <span style="color: #007700">&lt;p&gt;</span>La page de présentation des documents permet de visualiser les documents XML. Chaque document est représenté par un petit livre, dont le contenu est consultable en cliquant dessus, via une fenêtre qu'on peut ensuite fermer. (j'ai exploité la classe Portfolio de Bootsrap)
+        Le contenu du document XML est transformé en html (un tableau pour les métadonnées, puis le texte, avec différentes tailles de titres) via une feuille de style XSLT <span style="color: #007700">&lt;imp&gt;</span>/resources/xslt/transfo_tei.xsl<span style="color: #007700">&lt;/imp&gt;</span>. Cette transformation est effectuée par une fonction xQuery app:transfoTEI. 
+            Cette fonction est ensuite appelée dans une autre fonction app:afficherDoc, qui permet d'ajouter un document sur la page (le Livre cliquable et la fenêtre du contenu). Enfin, une fonction app:listerDoc appelle la fonction app:afficherDoc de manière itérative sur tous les documents de la collection <span style="color: #007700">&lt;imp&gt;</span>/data.<span style="color: #007700">&lt;/imp&gt;</span>
+        Ainsi, le contenu de la page est généré à chaque ouverture en fonction du contenu de la collection /data, et à chaque fois qu'un document XML sera ajouté dans cette collection, un objet cliquable lui correspondant sera créé sur la page automatiquement.<span style="color: #007700">&lt;/p&gt;</span>
+        <span style="color: #007700">&lt;p&gt;</span>Les trois requêtes XQuery utilisées pour afficher les documents sont : <span style="color: #007700">&lt;/p&gt;</span>
+        <span style="color: #007700">&lt;cadre</span> <span style="color: #0000CC">source=</span>
+        <span style="background-color: #fff0f0">"resources/code_display/affichage_doc.html"</span>
+        <span style="color: #007700">/&gt;</span>
+        <span style="color: #007700">&lt;p&gt;</span>La feuille de style de transformation des documents XML tei : <span style="color: #007700">&lt;/p&gt;</span>
+        <span style="color: #007700">&lt;cadre</span> <span style="color: #0000CC">source=</span>
+        <span style="background-color: #fff0f0">"resources/code_display/transfo_tei.html"</span>
+        <span style="color: #007700">/&gt;</span>
+        
+    <span style="color: #007700">&lt;/partie&gt;</span>
+    <span style="color: #007700">&lt;partie</span> <span style="color: #0000CC">titre=</span>
+        <span style="background-color: #fff0f0">"Présentation des difficultés"</span>
+        <span style="color: #007700">&gt;</span>
+        <span style="color: #007700">&lt;titre</span> <span style="color: #0000CC">n=</span>
+        <span style="background-color: #fff0f0">"1"</span>
+        <span style="color: #007700">&gt;</span> Difficultés sur la Partie 1  <span style="color: #007700">&lt;/titre&gt;</span>
+        <span style="color: #007700">&lt;titre</span> <span style="color: #0000CC">n=</span>
+        <span style="background-color: #fff0f0">"2"</span>
+        <span style="color: #007700">&gt;</span> Utiliser deux documents XML<span style="color: #007700">&lt;/titre&gt;</span>
+        <span style="color: #007700">&lt;p&gt;</span>La feuille de transformation XSLT que j'ai créée pour transformer les XML contenus dans l'archive d'un document odt en un XML au format TEI est globalement très simple, 
+        mais j'ai tout de même un peu bloqué sur comment exploiter le contenu de deux documents XML. Comme expliqué précedemment, j'ai trouvé deux solutions : <span style="color: #007700">&lt;/p&gt;</span>
+        <span style="color: #007700">&lt;p&gt;</span>Solution 1 (pour un document à la fois) : J'ai utilisé deux variables : $repertoire qui contient le nom du répertoire d'archive XML a traiter, et $meta_doc qui représente le deuxième document à traiter (le meta.xml), grâce à la fonction doc() et la variable $repertoire. 
+        Pour opérer la transformation avec Oxygen sur un document content.xml, il est alors nécessaire de bien penser à changer également le contenu de la variable $repertoire pour que le bon fichier meta.xml soit traité!<span style="color: #007700">&lt;/p&gt;</span>
+        <span style="color: #007700">&lt;p&gt;</span>Solution 2 : utiliser uniquement une variable $meta_doc qui correspond au noeud office:meta. Le noeud office:meta est importé depuis meta.xml au cours de l'exécution d'un script python script_transfo.py qui effectue toutes les transformations. <span style="color: #007700">&lt;/p&gt;</span>
+        <span style="color: #007700">&lt;titre</span> <span style="color: #0000CC">n=</span>
+        <span style="background-color: #fff0f0">"2"</span>
+        <span style="color: #007700">&gt;</span> Hiérarchisation d'une structure plate <span style="color: #007700">&lt;/titre&gt;</span>
+        <span style="color: #007700">&lt;p&gt;</span>C'est la partie qui a été la plus difficile pour moi dans cet exercice de XSLT : les éléments de titres et de paragraphes sont tous au même niveau dans le <span style="color: #007700">&lt;ital&gt;</span>content.xml<span style="color: #007700">&lt;/ital&gt;</span>. 
+            J'ai trouvé assez difficile de mettre au point une stratégie qui puisse rendre une structure hiérarchisée correctement à partir de cette structure plate. J'avais au début beaucoup d'erreurs d'imbrication, ou d'erreurs qui auraient pu arriver sur des documents plus longs (puisque nos documents étaient tronqués).
+            Je me suis inspirée d'une solution trouvée sur internet en la complexifiant un petit peu pour éviter des problèmes d'imbrication, le résultat est commenté directement dans la feuille <span style="color: #007700">&lt;imp&gt;</span>transformation/transformation.xsl<span style="color: #007700">&lt;/imp&gt;</span>. Voici l'extrait concerné : <span style="color: #007700">&lt;/p&gt;</span>
+        <span style="color: #007700">&lt;cadre</span> <span style="color: #0000CC">source=</span>
+        <span style="background-color: #fff0f0">"resources/code_display/pb_xsl.html"</span>
+        <span style="color: #007700">/&gt;</span>
+        <span style="color: #007700">&lt;titre</span> <span style="color: #0000CC">n=</span>
+        <span style="background-color: #fff0f0">"1"</span>
+        <span style="color: #007700">&gt;</span> Difficultés sur la partie 2 <span style="color: #007700">&lt;/titre&gt;</span>
+        <span style="color: #007700">&lt;titre</span> <span style="color: #0000CC">n=</span>
+        <span style="background-color: #fff0f0">"2"</span>
+        <span style="color: #007700">&gt;</span> Utilisation de exist-DB <span style="color: #007700">&lt;/titre&gt;</span>
+        <span style="color: #007700">&lt;p&gt;</span>L'utilisation d'exist-DB ne m'a pas posé beaucoup de problèmes, dans le sens où je n'ai pas eu de bugs contrairement à ce qu'ont rapporté d'autre étudiants.
+        Etant plus habituée à Oxygen, j'ai principalement modifié les fichiers depuis Oxygen et non eXide. Pour ce qui est de l'organisation de l'app (l'utilisation des modules/fichier.xql, des templates etc),
+        j'ai beaucoup tâtonné, et un <span style="color: #007700">&lt;lien</span> <span style="color: #0000CC">source=</span>
+        <span style="background-color: #fff0f0">"https://howto.acdh.oeaw.ac.at/blog/part-8-full-text-search/"</span>
+        <span style="color: #007700">&gt;</span>tutoriel<span style="color: #007700">&lt;/lien&gt;</span> partagé par une camarade m'a aidée à comprendre les points qui restaient obscurs. Je m'en suis inspirée pour la base de la requête de recherche de mots-clés.<span style="color: #007700">&lt;/p&gt;</span>
+        <span style="color: #007700">&lt;titre</span> <span style="color: #0000CC">n=</span>
+        <span style="background-color: #fff0f0">"2"</span>
+        <span style="color: #007700">&gt;</span> Combiner requêtes <span style="color: #007700">&lt;/titre&gt;</span>
+        <span style="color: #007700">&lt;p&gt;</span>Pour la requête de recherche en question, j'ai eu un peu de mal à trouver comment combiner des requêtes par mots-clés et/ou filtres de métadonnées. 
+        J'ai utilisé request:get-parameter(), dans une série de tests, mais je suis persuadée qu'il existe une meilleure façon de faire.<span style="color: #007700">&lt;/p&gt;</span>
+    <span style="color: #007700">&lt;/partie&gt;</span>
+<span style="color: #007700">&lt;/page&gt;</span>
+</pre>
+</div>

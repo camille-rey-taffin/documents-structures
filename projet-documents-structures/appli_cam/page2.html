@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<div class="templates:surround?with=templates/page.html&amp;at=content">
+    
+        <!-- Masthead-->
+        <header class="masthead bg-primary text-white text-center" style="max-height: 600px;padding:120px">
+            <div class="container d-flex align-items-center flex-column">
+                <!-- Masthead Avatar Image-->
+                <img class="masthead-avatar mb-5" src="resources/images/requete.png" alt=""/>
+                <!-- Titre-->
+                <h1 class="masthead-heading text-uppercase mb-0">Requêtes</h1>
+                <!-- Icon Divider-->
+                <div class="divider-custom divider-light">
+                    <div class="divider-custom-line"/>
+                    <div class="divider-custom-icon">
+                    <i class="fas fa-seedling"/>
+                </div>
+                    <div class="divider-custom-line"/>
+                </div>
+            </div>
+        </header>
+        <!-- About Section-->
+        <section class="page-section text-black mb-0" id="about">
+            <div class="container">
+                <!-- About Section Heading-->
+            
+                <div class="row">
+                    <div class="col-lg-8 mx-auto">
+                        <!-- To configure the contact form email address, go to mail/contact_me.php and update the email address in the PHP file on line 19.-->
+                        <form method="get" id="pageform">
+                            <div class="control-group">
+                                <div class="form-group floating-label-form-group controls mb-0 pb-2">
+                                    <label>Mot(s)-clé(s)</label>
+                                    <input class="form-control" id="keyword" type="text" placeholder="Mot(s)-clé(s)" name="keyword"/>
+                                    <p class="help-block text-danger"/>
+                                </div>
+                            </div>
+                            <div class="control-group">
+                                <div class="form-group floating-label-form-group controls mb-0 pb-2">
+                                    <label>Livre</label>
+                                    <input class="form-control" id="Livre" type="text" placeholder="Livre" name="livre"/>
+                                    <p class="help-block text-danger"/>
+                                </div>
+                            </div>
+                            <div class="control-group">
+                                <div class="form-group floating-label-form-group controls mb-0 pb-2">
+                                    <label>Auteur</label>
+                                    <input class="form-control" id="Auteur" type="text" placeholder="Auteur" name="auteur"/>
+                                    <p class="help-block text-danger"/>
+                                </div>
+                            </div>
+                            <div class="control-group">
+                                <div class="form-group floating-label-form-group controls mb-0 pb-2">
+                                    <label>Date de Création</label>
+                                    <input class="form-control" id="date_crea" type="text" placeholder="Date de Création" name="date_crea"/>
+                                    <p class="help-block text-danger"/>
+                                </div>
+                            </div>
+                            <div class="control-group">
+                                <div class="form-group floating-label-form-group controls mb-0 pb-2">
+                                    <label>Date de Publication</label>
+                                    <input class="form-control" id="date_pub" type="text" placeholder="Date de Publication" name="date_pub"/>
+                                    <p class="help-block text-danger"/>
+                                </div>
+                            </div>
+                            <div id="success"/>
+                            <div class="form-group">
+                            <button class="btn btn-primary btn-xl" id="sendMessageButton" type="submit">Chercher!</button>
+                        </div>
+                        </form>
+                    </div>
+                </div>
+                <br/>
+                <br/>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Contexte du mot-clé</th>
+                            <th>Document</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr data-template="app:chercher"/>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+    
+</div>

@@ -1,0 +1,446 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<div xmlns="http://www.w3.org/1999/xhtml" class="templates:surround?with=templates/page.html&amp;at=content">
+   <header class="masthead bg-primary text-white text-center">
+      <div class="container d-flex align-items-center flex-column">
+            <img class="masthead-avatar mb-5" src="resources/images/present.png" alt=""/>
+            <h1 class="masthead-heading text-uppercase mb-0"> CamCam Project</h1>
+         <div class="divider-custom divider-light">
+            <div class="divider-custom-line"/>
+            <div class="divider-custom-icon">
+                    <i class="fas fa-seedling"/>
+                </div>
+            <div class="divider-custom-line"/>
+         </div>
+         <p class="masthead-subheading font-weight-light mb-0"> Un projet fait avec le coeur (et Bootstrap) </p>
+      </div>
+   </header>
+   <section class="page-section text-black mb-0" id="about">
+      <div class="container" style="padding:60px">
+         <h2 class="page-section-heading text-center text-uppercase text-black">Présentation de projet</h2>
+         <div class="divider-custom ">
+            <div class="divider-custom-line"/>
+            <div class="divider-custom-icon">
+                    <i class="fas fa-lemon"/>
+                </div>
+            <div class="divider-custom-line"/>
+         </div>
+         
+         <div class=" ml-auto">
+            <p class="lead" style="text-align: justify">L’objectif de ce projet est de réaliser une chaîne de traitement pour la publication
+               de documents en ligne. À partir de documents qui nous sont fournis, nous proposons
+               un site web pour présenter le contenu de ces documents et interagir avec.
+            </p>
+         </div>
+         
+         <div class=" ml-auto">
+            <p class="lead" style="text-align: justify">Deux grandes étapes sont mises en oeuvre.</p>
+         </div>
+         <br/>
+            <h2 class="text-center text-black"> Partie1 </h2>
+            <br/>
+         
+         <div class=" ml-auto">
+            <p class="lead" style="text-align: justify">La première étape consiste à transformer les documents au format OpenDocument en document
+               XML selon le standard de la <a href="https://tei-c.org" target="_blank">Text Encoding Initiative</a> (TEI). Pour cela, son schéma nous est communiqué afin de nous permettre de valider
+               la structure.
+            </p>
+         </div>
+         <br/>
+            <h4 class="text-center text-black text-info">1 - Récupérer les XML des documents ODT</h4>
+            <br/>
+         
+         <div class=" ml-auto">
+            <p class="lead" style="text-align: justify"> Le format OpenDocument est une archive de plusieurs fichiers XML. Pour récupérer
+               ces fichiers XML, il suffit de procéder à une opération d'extraction, dans la ligne
+               de commande par exemple, avec la commande : UNZIP file.odt -d file
+            </p>
+         </div>
+         <br/>
+            <h4 class="text-center text-black text-info">2 - Extraire le contenu du texte et ses métadonnées</h4>
+            <br/>
+         
+         <div class=" ml-auto">
+            <p class="lead" style="text-align: justify">On peut extraire le contenu via une transformation XSLT, à partir des documents <i>content.xml</i> pour le contenu, et <i>meta.xml</i> pour les métadonnées.
+            </p>
+         </div>
+         <br/>
+            <h4 class="text-center text-black text-info">3 - Générer un document au format TEI</h4>
+            <br/>
+         
+         <div class=" ml-auto">
+            <p class="lead" style="text-align: justify"> Une fois le contenu à extraire identifié, il faut savoir quoi en faire. Pour savoir
+               comment structurer le document XML en sortie, on peut se référer au schéma de la TEI,
+               et à la doc de la TEI disponible sur internet. 
+               On exploite donc cette structure dans notre feuille de style XSLT pour extraire le
+               contenu et les métadonnées du document original, et les "redisposer" selon la structure
+               TEI, avec les bons noms de balises. Le schéma de la TEI
+               est indiqué dans le document en sortie, afin de faciliter la validation.
+               Les deux feuilles de style (deux versions, voir section suivante) sont disponibles
+               dans l'archive du projet dans <span class="text-danger">/transformation/</span>
+                </p>
+         </div>
+         <img src="resources/images/input.png" class="img-fluid" alt="Responsive image" style="border: 3px solid #555; max-height:400px; width:auto"/>
+            <br/>
+            <span class="text-secondary">↑Exemple d'odt en input (Madame Bovary)</span>
+            <br/>
+            <br/>
+         <img src="resources/images/output.png" class="img-fluid" alt="Responsive image" style="border: 3px solid #555; max-height:400px; width:auto"/>
+            <br/>
+            <span class="text-secondary">↑Exemple de XML en output (Madame Bovary)</span>
+            <br/>
+            <br/>
+         <br/>
+            <h4 class="text-center text-black text-info">4 - Appliquer à tous les documents</h4>
+            <br/>
+         
+         <div class=" ml-auto">
+            <p class="lead" style="text-align: justify"> J'ai fait deux version pour la feuille de style. </p>
+         </div>
+         
+         <div class=" ml-auto">
+            <p class="lead" style="text-align: justify"> La version 1 <span class="text-danger">/transformation/transformation.xsl</span> ne permet de traiter qu'un document à la fois, car il faut manuellement
+               modifier la valeur de la variable de répertoire (contenant content.xml et meta.xml)
+               avant chaque lancement de la transformation sur un document content.xml. Elle implique
+               donc
+               d'avoir réalisé la décompression de l'archive odt au préalable.
+               Cette version vise donc à être utilisée pour générer les documents TEI un à la fois,
+               depuis Oxygen par exemple.
+            </p>
+         </div>
+         
+         <div class=" ml-auto">
+            <p class="lead" style="text-align: justify"> La version 2 <span class="text-danger">/transformation/transformationV2.xsl</span> vise à être appelée à partir d'un script python (<span class="text-danger">/transformation/script_transfo.py</span>), qui traduit automatiquement tous les fichiers odt du
+               répertoire input et écrit les résultats au nom correspondant .xml dans le répertoire
+               output. Ce script va chercher lui-même dans les documents XML archivés dans un document
+               odt,
+               il n'y a donc pas besoin d'effectuer de décompression au préalable. Ce script est
+               plus pratique car il suffit de le lancer en ligne de commande depuis le répertoire
+               où il se trouve
+               avec "python script_transfo.py" et il effectue toutes les transformations.
+            </p>
+         </div>
+         
+         <div class=" ml-auto">
+            <p class="lead" style="text-align: justify"> Le script python</p>
+         </div>
+         <iframe width="90%" height="300px" border="5px" src="resources/code_display/script_transfo.html"/>
+            <br/>
+         
+         <div class=" ml-auto">
+            <p class="lead" style="text-align: justify"> Le seul passage qui diffère entre la V1 et la V2 de la feuille XSLT :</p>
+         </div>
+         <img src="resources/images/xsltv1.png" class="img-fluid" alt="Responsive image" style="border: 3px solid #555; max-height:400px; width:auto"/>
+            <br/>
+            <span class="text-secondary">↑Version 1</span>
+            <br/>
+            <br/>
+         <img src="resources/images/xsltv2.png" class="img-fluid" alt="Responsive image" style="border: 3px solid #555; max-height:400px; width:auto"/>
+            <br/>
+            <span class="text-secondary">↑Version 2</span>
+            <br/>
+            <br/>
+         <br/>
+            <h2 class="text-center text-black"> Partie2 </h2>
+            <br/>
+         
+         <div class=" ml-auto">
+            <p class="lead" style="text-align: justify">Les XML ainsi obtenus sont stockés dans une base de données XML (<a href="http://exist-db.org/exist/apps/homepage/index.html" target="_blank">eXist- db</a>). 
+               À partir de celle-ci, nous devons réaliser un site internet à l’aide de xquery et
+               xslt. 
+               Sur ce site seront présentées trois interfaces : une pour la recherche d’informations
+               dans les documents, une autre pour afficher les documents mis en page et finalement
+               une page pour présenter le proje.t
+            </p>
+         </div>
+         <br/>
+            <h4 class="text-center text-black text-info">1 - Installer ExistDb et créer une application</h4>
+            <br/>
+         
+         <div class=" ml-auto">
+            <p class="lead" style="text-align: justify">L'installation et la création d'une application ont été vues en cours, mais on peut
+               simplement suivre la documentation d'eXist-db pour les faire. Une fois l'application
+               créée, dans une collection "data", on ajoute manuellement les 3 documents XML générés
+               dans la partie précédente.
+               J'ai personnellement décidé de connecter la base eXist-db à Oxygen, et ai travaillé
+               quasi-exclusivement depuis Oxygen pour l'édition des documents de l'app (sauf pour
+               créer un fichier collection.xconf, pour l'indexation).
+            </p>
+         </div>
+         <br/>
+            <h4 class="text-center text-black text-info">2 - Créer une page de présentation</h4>
+            <br/>
+         
+         <div class=" ml-auto">
+            <p class="lead" style="text-align: justify">La page de présentation (présente page) doit être le résultat d'une transformation
+               XSLT sur un document XML. Ce document XML doit être validé par un schéma Relax-NG
+               que nous devons définir. 
+            </p>
+         </div>
+         <br/>
+            <h4 class="text-center text-black text-info">3 - Créer une page d'affichage des documents</h4>
+            <br/>
+         
+         <div class=" ml-auto">
+            <p class="lead" style="text-align: justify">La page d'affichage des documents doit permettre d'afficher les documents XML générés
+               à l'étape précédente. Le rendu est libre dans sa forme, mais doit être effectué avec
+               XSLT ou/et xQuery. 
+            </p>
+         </div>
+         <br/>
+            <h4 class="text-center text-black text-info">4 - Créer une page de requêtes</h4>
+            <br/>
+         
+         <div class=" ml-auto">
+            <p class="lead" style="text-align: justify">La page de requêtes doit permettre de questionner la base de données : on peut lister
+               les documents selon certaines métadonnées, ou bien chercher des mots clés dans les
+               documents, avec ou sans filtre(s) de métadonnées.
+            </p>
+         </div>
+         
+      </div>
+      <div class="container" style="padding:60px">
+         <h2 class="page-section-heading text-center text-uppercase text-black">Présentation du site</h2>
+         <div class="divider-custom ">
+            <div class="divider-custom-line"/>
+            <div class="divider-custom-icon">
+                    <i class="fas fa-lemon"/>
+                </div>
+            <div class="divider-custom-line"/>
+         </div>
+         <br/>
+            <h2 class="text-center text-black"> Généralités sur le site </h2>
+            <br/>
+         
+         <div class=" ml-auto">
+            <p class="lead" style="text-align: justify">Pour avoir un site un peu esthétique, j'ai utilisé un template <a href="https://startbootstrap.com/themes" target="_blank">Bootstrap</a> dont j'ai réutilisé certains éléments.
+               J'ai également utilisé <a href="https://www.bitmoji.com/" target="_blank">Bitmoji</a> pour les avatars. Chaque page (index.html, page2.html, page3.html) a pour élément
+               racine un élément de type "div",
+               qui  a un attribut class de valeur "templates:surround?with=templates/page.html&amp;at=content".
+               Cela permet à chaque page d'être entourée par des éléments définis dans le <span class="text-danger">/templates/page.html</span>. Ici, cela correspond à la structure générale du site qui est répétée à chaque page
+               (menu, copyright...).
+            </p>
+         </div>
+         <br/>
+            <h4 class="text-center text-black text-info"> Page de présentation </h4>
+            <br/>
+         
+         <div class=" ml-auto">
+            <p class="lead" style="text-align: justify">La page de présentation <span class="text-danger">/index.html</span> est à la base générée (au préalable avec Oxygen) à partir de deux fichiers : <span class="text-danger">resources/archive_index/index.xml</span> et <span class="text-danger">resources/archive_index/index_transfo.xsl</span>. La structure du document xml est très simple :
+            </p>
+         </div>
+         <iframe width="90%" height="300px" border="5px" src="resources/code_display/index.html"/>
+            <br/>
+         
+         <div class=" ml-auto">
+            <p class="lead" style="text-align: justify">La transformation est effectuée sur ce document pour qu'il soit rendu dans le même
+               style que le reste du site, grâce à cette feuille de transformation : 
+            </p>
+         </div>
+         <iframe width="90%" height="300px" border="5px" src="resources/code_display/index_transfo.html"/>
+            <br/>
+         
+         <div class=" ml-auto">
+            <p class="lead" style="text-align: justify">Le document index.xml est validé par une grammaire RelaxNG disponible dans <span class="text-danger">/resources/grammaire_index.rng</span>
+                </p>
+         </div>
+         <br/>
+            <h4 class="text-center text-black text-info"> Page de requête </h4>
+            <br/>
+         
+         <div class=" ml-auto">
+            <p class="lead" style="text-align: justify">La page de requête permet d'effectuer des requêtes sur les livres au format XML TEI
+               contenus dans la base de données. Les requêtes peuvent être faites avec ou sans mot-clés,
+               et avec ou sans filtre(s) (indépendants de la case). Les filtres sont superposables.
+               
+               Par exemple, si on effectue la requête suivante, qui ne contient pas de mot-clé :
+               
+            </p>
+         </div>
+         
+         <div class=" ml-auto">
+            <p class="lead" style="text-align: justify">Les résultats renvoyés seront la liste des documents dont les métadonnées correspondent
+               aux filtres
+            </p>
+         </div>
+         <img src="resources/images/requete1.png" class="img-fluid" alt="Responsive image" style="border: 3px solid #555; max-height:400px; width:auto"/>
+            <br/>
+            <span class="text-secondary">↑Requete uniquement filtres</span>
+            <br/>
+            <br/>
+         <img src="resources/images/resultat1.png" class="img-fluid" alt="Responsive image" style="border: 3px solid #555; max-height:400px; width:auto"/>
+            <br/>
+            <span class="text-secondary">↑Résultats</span>
+            <br/>
+            <br/>
+         
+         <div class=" ml-auto">
+            <p class="lead" style="text-align: justify">Pour une requête de mot-clé :</p>
+         </div>
+         <img src="resources/images/requete2.png" class="img-fluid" alt="Responsive image" style="border: 3px solid #555; max-height:400px; width:auto"/>
+            <br/>
+            <span class="text-secondary">↑Requete mot-clé SANS filtres</span>
+            <br/>
+            <br/>
+         
+         <div class=" ml-auto">
+            <p class="lead" style="text-align: justify">Les résultats renvoyés seront les mots-clés trouvés dans leur contexte, ainsi que
+               le document dans lequel ils ont été trouvés. Ils sont ordonnés par "match score" décroissant
+               : 
+            </p>
+         </div>
+         <img src="resources/images/resultat2.png" class="img-fluid" alt="Responsive image" style="border: 3px solid #555; max-height:400px; width:auto"/>
+            <br/>
+            <span class="text-secondary">↑Résultats</span>
+            <br/>
+            <br/>
+         
+         <div class=" ml-auto">
+            <p class="lead" style="text-align: justify">Pour une requête avec mot-clé et filtres :</p>
+         </div>
+         <img src="resources/images/requete3.png" class="img-fluid" alt="Responsive image" style="border: 3px solid #555; max-height:400px; width:auto"/>
+            <br/>
+            <span class="text-secondary">↑Requete mot-clé AVEC filtres</span>
+            <br/>
+            <br/>
+         <img src="resources/images/resultat3.png" class="img-fluid" alt="Responsive image" style="border: 3px solid #555; max-height:400px; width:auto"/>
+            <br/>
+            <span class="text-secondary">↑Résultats</span>
+            <br/>
+            <br/>
+         
+         <div class=" ml-auto">
+            <p class="lead" style="text-align: justify">Ces requêtes sont effectuées grâce à une fonction app:chercher() créée dans <span class="text-danger">modules/app.xql</span> qui utilise un filtre contains() pour les métadonnées, et ft-query() pour les mots-clés.
+               
+               Cela implique d'avoir indexé les données au préalable. A NOTER : Les métadonnées étant
+               filtrées avec contains(), le filtre s'effectue en fonction de la présence ou non du
+               segment recherché dans la métadonnée évaluée. Par exemple "mil" pour auteur renverra
+               Emily Brontë.
+            </p>
+         </div>
+         <br/>
+            <h4 class="text-center text-black text-info"> Page des documents </h4>
+            <br/>
+         
+         <div class=" ml-auto">
+            <p class="lead" style="text-align: justify">La page de présentation des documents permet de visualiser les documents XML. Chaque
+               document est représenté par un petit livre, dont le contenu est consultable en cliquant
+               dessus, via une fenêtre qu'on peut ensuite fermer. (j'ai exploité la classe Portfolio
+               de Bootsrap)
+               Le contenu du document XML est transformé en html (un tableau pour les métadonnées,
+               puis le texte, avec différentes tailles de titres) via une feuille de style XSLT <span class="text-danger">/resources/xslt/transfo_tei.xsl</span>. Cette transformation est effectuée par une fonction xQuery app:transfoTEI. 
+               Cette fonction est ensuite appelée dans une autre fonction app:afficherDoc, qui permet
+               d'ajouter un document sur la page (le Livre cliquable et la fenêtre du contenu). Enfin,
+               une fonction app:listerDoc appelle la fonction app:afficherDoc de manière itérative
+               sur tous les documents de la collection <span class="text-danger">/data.</span>
+               Ainsi, le contenu de la page est généré à chaque ouverture en fonction du contenu
+               de la collection /data, et à chaque fois qu'un document XML sera ajouté dans cette
+               collection, un objet cliquable lui correspondant sera créé sur la page automatiquement.
+            </p>
+         </div>
+         
+         <div class=" ml-auto">
+            <p class="lead" style="text-align: justify">Les trois requêtes XQuery utilisées pour afficher les documents sont : </p>
+         </div>
+         <iframe width="90%" height="300px" border="5px" src="resources/code_display/affichage_doc.html"/>
+            <br/>
+         
+         <div class=" ml-auto">
+            <p class="lead" style="text-align: justify">La feuille de style de transformation des documents XML tei : </p>
+         </div>
+         <iframe width="90%" height="300px" border="5px" src="resources/code_display/transfo_tei.html"/>
+            <br/>
+         
+         
+      </div>
+      <div class="container" style="padding:60px">
+         <h2 class="page-section-heading text-center text-uppercase text-black">Présentation des difficultés</h2>
+         <div class="divider-custom ">
+            <div class="divider-custom-line"/>
+            <div class="divider-custom-icon">
+                    <i class="fas fa-lemon"/>
+                </div>
+            <div class="divider-custom-line"/>
+         </div>
+         <br/>
+            <h2 class="text-center text-black"> Difficultés sur la Partie 1  </h2>
+            <br/>
+         <br/>
+            <h4 class="text-center text-black text-info"> Utiliser deux documents XML</h4>
+            <br/>
+         
+         <div class=" ml-auto">
+            <p class="lead" style="text-align: justify">La feuille de transformation XSLT que j'ai créée pour transformer les XML contenus
+               dans l'archive d'un document odt en un XML au format TEI est globalement très simple,
+               
+               mais j'ai tout de même un peu bloqué sur comment exploiter le contenu de deux documents
+               XML. Comme expliqué précedemment, j'ai trouvé deux solutions : 
+            </p>
+         </div>
+         
+         <div class=" ml-auto">
+            <p class="lead" style="text-align: justify">Solution 1 (pour un document à la fois) : J'ai utilisé deux variables : $repertoire
+               qui contient le nom du répertoire d'archive XML a traiter, et $meta_doc qui représente
+               le deuxième document à traiter (le meta.xml), grâce à la fonction doc() et la variable
+               $repertoire. 
+               Pour opérer la transformation avec Oxygen sur un document content.xml, il est alors
+               nécessaire de bien penser à changer également le contenu de la variable $repertoire
+               pour que le bon fichier meta.xml soit traité!
+            </p>
+         </div>
+         
+         <div class=" ml-auto">
+            <p class="lead" style="text-align: justify">Solution 2 : utiliser uniquement une variable $meta_doc qui correspond au noeud office:meta.
+               Le noeud office:meta est importé depuis meta.xml au cours de l'exécution d'un script
+               python script_transfo.py qui effectue toutes les transformations. 
+            </p>
+         </div>
+         <br/>
+            <h4 class="text-center text-black text-info"> Hiérarchisation d'une structure plate </h4>
+            <br/>
+         
+         <div class=" ml-auto">
+            <p class="lead" style="text-align: justify">C'est la partie qui a été la plus difficile pour moi dans cet exercice de XSLT : les
+               éléments de titres et de paragraphes sont tous au même niveau dans le <i>content.xml</i>. 
+               J'ai trouvé assez difficile de mettre au point une stratégie qui puisse rendre une
+               structure hiérarchisée correctement à partir de cette structure plate. J'avais au
+               début beaucoup d'erreurs d'imbrication, ou d'erreurs qui auraient pu arriver sur des
+               documents plus longs (puisque nos documents étaient tronqués).
+               Je me suis inspirée d'une solution trouvée sur internet en la complexifiant un petit
+               peu pour éviter des problèmes d'imbrication, le résultat est commenté directement
+               dans la feuille <span class="text-danger">transformation/transformation.xsl</span>. Voici l'extrait concerné : 
+            </p>
+         </div>
+         <iframe width="90%" height="300px" border="5px" src="resources/code_display/pb_xsl.html"/>
+            <br/>
+         <br/>
+            <h2 class="text-center text-black"> Difficultés sur la partie 2 </h2>
+            <br/>
+         <br/>
+            <h4 class="text-center text-black text-info"> Utilisation de exist-DB </h4>
+            <br/>
+         
+         <div class=" ml-auto">
+            <p class="lead" style="text-align: justify">L'utilisation d'exist-DB ne m'a pas posé beaucoup de problèmes, dans le sens où je
+               n'ai pas eu de bugs contrairement à ce qu'ont rapporté d'autre étudiants.
+               Etant plus habituée à Oxygen, j'ai principalement modifié les fichiers depuis Oxygen
+               et non eXide. Pour ce qui est de l'organisation de l'app (l'utilisation des modules/fichier.xql,
+               des templates etc),
+               j'ai beaucoup tâtonné, et un <a href="https://howto.acdh.oeaw.ac.at/blog/part-8-full-text-search/" target="_blank">tutoriel</a> partagé par une camarade m'a aidée à comprendre les points qui restaient obscurs.
+               Je m'en suis inspirée pour la base de la requête de recherche de mots-clés.
+            </p>
+         </div>
+         <br/>
+            <h4 class="text-center text-black text-info"> Combiner requêtes </h4>
+            <br/>
+         
+         <div class=" ml-auto">
+            <p class="lead" style="text-align: justify">Pour la requête de recherche en question, j'ai eu un peu de mal à trouver comment
+               combiner des requêtes par mots-clés et/ou filtres de métadonnées. 
+               J'ai utilisé request:get-parameter(), dans une série de tests, mais je suis persuadée
+               qu'il existe une meilleure façon de faire.
+            </p>
+         </div>
+         
+      </div>
+   </section>
+</div>

@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<grammar xmlns="http://relaxng.org/ns/structure/1.0" ns="" datatypeLibrary="http://www.w3.org/2001/XMLSchema-datatypes">
+    <start>
+        <element name="page">
+            <attribute name="titre">
+                <data type="NCName"/>
+            </attribute>
+            <element name="main_titre">
+                <text/>
+            </element>
+            <element name="sous_titre">
+                <text/>
+            </element>
+            <oneOrMore>
+                <ref name="partie"/>
+            </oneOrMore>
+        </element>
+    </start>
+     <define name="partie">
+         <element name="partie">
+            <attribute name="titre"/>
+             <oneOrMore>
+                 <choice>
+                     <ref name="titre"/>
+                     <ref name="p"/>
+                     <ref name="image"/>
+                     <ref name="cadre"/>
+                 </choice>
+             </oneOrMore>
+         </element>
+     </define> 
+     <define name="titre">
+         <element name="titre">
+             <attribute name="n">
+                 <data type="integer"/>
+             </attribute>
+             <text/>
+         </element>
+     </define>
+     <define name="cadre">
+         <element name="cadre">
+             <attribute name="source"/>
+         </element>
+     </define>
+    <define name="image">
+        <element name="image">
+            <attribute name="legende"/>
+            <attribute name="source"/>
+        </element>
+    </define>
+    <define name="p">
+        <element name="p">
+            <oneOrMore>
+                <choice>
+                    <text/>
+                    <element name="imp">
+                        <text/>
+                    </element>
+                    <element name="ital">
+                        <text/>
+                    </element>
+                    <ref name="lien"/>
+                </choice>
+            </oneOrMore>
+        </element>
+    </define>
+    <define name="lien">
+        <element name="lien">
+            <attribute name="source">
+                <data type="anyURI"/>
+            </attribute>
+            <text/>
+        </element>
+    </define>
+</grammar>

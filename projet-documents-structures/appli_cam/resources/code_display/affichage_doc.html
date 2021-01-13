@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- HTML generated using hilite.me -->
+<div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;">
+    <pre style="margin: 0; line-height: 125%">
+        <span style="color: #008800; font-weight: bold">declare</span> <span style="color: #008800; font-weight: bold">function</span> <span style="color: #0066BB; font-weight: bold">app:afficherDoc</span>(<span style="color: #996633">$doc</span>) {
+    <span style="color: #008800; font-weight: bold">let</span> <span style="color: #996633">$nom_doc</span> <span style="color: #333333">:=</span> <span style="color: #0066BB; font-weight: bold">util:document-name</span>(<span style="color: #996633">$doc</span>)
+    <span style="color: #008800; font-weight: bold">let</span> <span style="color: #996633">$id_doc</span> <span style="color: #333333">:=</span> <span style="color: #0066BB; font-weight: bold">replace</span> (<span style="color: #996633">$nom_doc</span>,<span style="background-color: #fff0f0">'\.xml'</span>,<span style="background-color: #fff0f0">''</span>)
+    <span style="color: #008800; font-weight: bold">return</span>
+    <span style="color: #007700">&lt;div</span> <span style="color: #007700">class</span>
+        <span style="color: #333333">=</span>"<span style="color: #0000CC">col-md-6 col-lg-4 mb-5</span>"<span style="color: #007700">&gt;</span>
+            <span style="color: #007700">&lt;div</span> <span style="color: #007700">class</span>
+        <span style="color: #333333">=</span>"<span style="color: #0000CC">portfolio-item mx-auto</span>" <span style="color: #007700">data-toggle</span>
+        <span style="color: #333333">=</span>"<span style="color: #0000CC">modal</span>" <span style="color: #007700">data-target</span>
+        <span style="color: #333333">=</span>"{<span style="color: #0066BB; font-weight: bold">concat</span>(<span style="background-color: #fff0f0">"#"</span>,<span style="color: #996633">$id_doc</span>)}"<span style="color: #007700">&gt;</span>
+                <span style="color: #007700">&lt;div</span> <span style="color: #007700">class</span>
+        <span style="color: #333333">=</span>"<span style="color: #0000CC">portfolio-item-caption d-flex align-items-center justify-content-center h-100 w-100</span>"<span style="color: #007700">&gt;</span>
+                    <span style="color: #007700">&lt;div</span> <span style="color: #007700">class</span>
+        <span style="color: #333333">=</span>"<span style="color: #0000CC">portfolio-item-caption-content text-center text-white</span>"<span style="color: #007700">&gt;&lt;i</span> <span style="color: #007700">class</span>
+        <span style="color: #333333">=</span>"<span style="color: #0000CC">fas fa-plus fa-3x</span>"<span style="color: #007700">&gt;&lt;/i&gt;&lt;p&gt;</span>{<span style="color: #996633">$nom_doc</span>}<span style="color: #007700">&lt;/p&gt;&lt;/div&gt;</span>
+                    <span style="color: #007700">&lt;/div&gt;</span>
+                <span style="color: #007700">&lt;img</span> <span style="color: #007700">class</span>
+        <span style="color: #333333">=</span>"<span style="color: #0000CC">img-fluid</span>" <span style="color: #007700">src</span>
+        <span style="color: #333333">=</span>"<span style="color: #0000CC">resources/images/livre.png</span>" <span style="color: #007700">alt</span>
+        <span style="color: #333333">=</span>"" <span style="color: #007700">/&gt;</span>
+            <span style="color: #007700">&lt;/div&gt;</span>
+            <span style="color: #007700">&lt;div</span> <span style="color: #007700">class</span>
+        <span style="color: #333333">=</span>"<span style="color: #0000CC">portfolio-modal modal fade</span>" <span style="color: #007700">id</span>
+        <span style="color: #333333">=</span>"{<span style="color: #996633">$id_doc</span>}" <span style="color: #007700">tabindex</span>
+        <span style="color: #333333">=</span>"<span style="color: #0000CC">-1</span>" <span style="color: #007700">role</span>
+        <span style="color: #333333">=</span>"<span style="color: #0000CC">dialog</span>" <span style="color: #007700">aria-labelledby</span>
+        <span style="color: #333333">=</span>"<span style="color: #0000CC">portfolioModal1Label</span>" <span style="color: #007700">aria-hidden</span>
+        <span style="color: #333333">=</span>"<span style="color: #0000CC">true</span>"<span style="color: #007700">&gt;</span>
+                        <span style="color: #007700">&lt;div</span> <span style="color: #007700">class</span>
+        <span style="color: #333333">=</span>"<span style="color: #0000CC">modal-dialog modal-xl</span>" <span style="color: #007700">role</span>
+        <span style="color: #333333">=</span>"<span style="color: #0000CC">document</span>"<span style="color: #007700">&gt;</span>
+                            <span style="color: #007700">&lt;div</span> <span style="color: #007700">class</span>
+        <span style="color: #333333">=</span>"<span style="color: #0000CC">modal-content</span>"<span style="color: #007700">&gt;</span>
+                                <span style="color: #007700">&lt;button</span> <span style="color: #007700">class</span>
+        <span style="color: #333333">=</span>"<span style="color: #0000CC">close</span>" <span style="color: #007700">type</span>
+        <span style="color: #333333">=</span>"<span style="color: #0000CC">button</span>" <span style="color: #007700">data-dismiss</span>
+        <span style="color: #333333">=</span>"<span style="color: #0000CC">modal</span>" <span style="color: #007700">aria-label</span>
+        <span style="color: #333333">=</span>"<span style="color: #0000CC">Close</span>"<span style="color: #007700">&gt;</span>
+                                    <span style="color: #007700">&lt;span</span> <span style="color: #007700">aria-hidden</span>
+        <span style="color: #333333">=</span>"<span style="color: #0000CC">true</span>"<span style="color: #007700">&gt;&lt;i</span> <span style="color: #007700">class</span>
+        <span style="color: #333333">=</span>"<span style="color: #0000CC">fas fa-times</span>"<span style="color: #007700">&gt;&lt;/i&gt;&lt;/span&gt;</span>
+                                <span style="color: #007700">&lt;/button&gt;</span>
+                                <span style="color: #007700">&lt;div</span> <span style="color: #007700">class</span>
+        <span style="color: #333333">=</span>"<span style="color: #0000CC">modal-body text-center</span>"<span style="color: #007700">&gt;</span>
+                                    <span style="color: #007700">&lt;div</span> <span style="color: #007700">class</span>
+        <span style="color: #333333">=</span>"<span style="color: #0000CC">container</span>"<span style="color: #007700">&gt;</span>
+                                        <span style="color: #007700">&lt;div</span> <span style="color: #007700">class</span>
+        <span style="color: #333333">=</span>"<span style="color: #0000CC">row justify-content-center</span>"<span style="color: #007700">&gt;</span>
+                                            <span style="color: #007700">&lt;div</span> <span style="color: #007700">class</span>
+        <span style="color: #333333">=</span>"<span style="color: #0000CC">col-lg-8</span>"<span style="color: #007700">&gt;</span>
+                                                <span style="color: #DD4422">&lt;!--</span> Portfolio Modal - Title<span style="color: #DD4422">--&gt;</span>
+                                                <span style="color: #007700">&lt;h2</span> <span style="color: #007700">class</span>
+        <span style="color: #333333">=</span>"<span style="color: #0000CC">portfolio-modal-title text-secondary text-uppercase mb-0</span>" <span style="color: #007700">id</span>
+        <span style="color: #333333">=</span>"<span style="color: #0000CC">portfolioModal1Label</span>"<span style="color: #007700">&gt;</span>{<span style="color: #996633">$nom_doc</span>}<span style="color: #007700">&lt;/h2&gt;</span>
+                                                <span style="color: #DD4422">&lt;!--</span> Icon Divider<span style="color: #DD4422">--&gt;</span>
+                                                <span style="color: #007700">&lt;div</span> <span style="color: #007700">class</span>
+        <span style="color: #333333">=</span>"<span style="color: #0000CC">divider-custom</span>"<span style="color: #007700">&gt;</span>
+                                                    <span style="color: #007700">&lt;div</span> <span style="color: #007700">class</span>
+        <span style="color: #333333">=</span>"<span style="color: #0000CC">divider-custom-line</span>"<span style="color: #007700">&gt;&lt;/div&gt;</span>
+                                                    <span style="color: #007700">&lt;div</span> <span style="color: #007700">class</span>
+        <span style="color: #333333">=</span>"<span style="color: #0000CC">divider-custom-icon</span>"<span style="color: #007700">&gt;&lt;i</span> <span style="color: #007700">class</span>
+        <span style="color: #333333">=</span>"<span style="color: #0000CC">fas fa-lemon</span>"<span style="color: #007700">&gt;&lt;/i&gt;&lt;/div&gt;</span>
+                                                    <span style="color: #007700">&lt;div</span> <span style="color: #007700">class</span>
+        <span style="color: #333333">=</span>"<span style="color: #0000CC">divider-custom-line</span>"<span style="color: #007700">&gt;&lt;/div&gt;</span>
+                                                <span style="color: #007700">&lt;/div&gt;</span>
+                                                <span style="color: #DD4422">&lt;!--</span> Portfolio Modal - Text<span style="color: #DD4422">--&gt;</span>
+                                                <span style="color: #007700">&lt;p</span> <span style="color: #007700">class</span>
+        <span style="color: #333333">=</span>"<span style="color: #0000CC">mb-5</span>"<span style="color: #007700">&gt;</span>{<span style="color: #0066BB; font-weight: bold">app:transfoTEI</span>(<span style="color: #996633">$nom_doc</span>)}<span style="color: #007700">&lt;/p&gt;</span>
+                                                <span style="color: #007700">&lt;button</span> <span style="color: #007700">class</span>
+        <span style="color: #333333">=</span>"<span style="color: #0000CC">btn btn-primary</span>" <span style="color: #007700">data-dismiss</span>
+        <span style="color: #333333">=</span>"<span style="color: #0000CC">modal</span>"<span style="color: #007700">&gt;</span>
+                                                    <span style="color: #007700">&lt;i</span> <span style="color: #007700">class</span>
+        <span style="color: #333333">=</span>"<span style="color: #0000CC">fas fa-times fa-fw</span>"<span style="color: #007700">&gt;&lt;/i&gt;</span>
+                                                    Fermer le document
+                                                <span style="color: #007700">&lt;/button&gt;</span>
+                                            <span style="color: #007700">&lt;/div&gt;</span>
+                                        <span style="color: #007700">&lt;/div&gt;</span>
+                                    <span style="color: #007700">&lt;/div&gt;</span>
+                                <span style="color: #007700">&lt;/div&gt;</span>
+                            <span style="color: #007700">&lt;/div&gt;</span>
+                        <span style="color: #007700">&lt;/div&gt;</span>
+            <span style="color: #007700">&lt;/div&gt;</span>
+        <span style="color: #007700">&lt;/div&gt;</span>
+};
+
+<span style="color: #008800; font-weight: bold">declare</span> <span style="color: #008800; font-weight: bold">function</span> <span style="color: #0066BB; font-weight: bold">app:listerDocs</span>(<span style="color: #996633">$node</span> <span style="color: #008800; font-weight: bold">as</span> <span style="color: #007700">node</span>(), <span style="color: #996633">$model</span> <span style="color: #008800; font-weight: bold">as</span> <span style="color: #333399; font-weight: bold">map</span>
+        <span style="color: #FF0000; background-color: #FFAAAA">(</span>
+        <span style="color: #333333">*</span>)) {
+    <span style="color: #008800; font-weight: bold">for</span> <span style="color: #996633">$document</span> <span style="color: #000000; font-weight: bold">in</span> <span style="color: #0066BB; font-weight: bold">collection</span>(<span style="background-color: #fff0f0">"/db/apps/application-camille/data/"</span>)/<span style="color: #007700">tei:TEI</span>
+        <span style="color: #008800; font-weight: bold">return</span>
+        <span style="color: #0066BB; font-weight: bold">app:afficherDoc</span>(<span style="color: #996633">$document</span>)
+};
+
+<span style="color: #008800; font-weight: bold">declare</span> <span style="color: #008800; font-weight: bold">function</span> <span style="color: #0066BB; font-weight: bold">app:transfoTEI</span> (<span style="color: #996633">$doc_xml</span>) {
+    <span style="color: #008800; font-weight: bold">let</span> <span style="color: #996633">$xml</span> <span style="color: #333333">:=</span> <span style="color: #0066BB; font-weight: bold">doc</span>(<span style="color: #0066BB; font-weight: bold">concat</span>(<span style="background-color: #fff0f0">"/db/apps/application-camille/data/"</span>,<span style="color: #996633">$doc_xml</span>))
+    <span style="color: #008800; font-weight: bold">let</span> <span style="color: #996633">$xsl</span> <span style="color: #333333">:=</span> <span style="color: #0066BB; font-weight: bold">doc</span>(<span style="background-color: #fff0f0">"/db/apps/application-camille/resources/xslt/transfo_tei.xsl"</span>)
+    <span style="color: #008800; font-weight: bold">let</span> <span style="color: #996633">$params</span> <span style="color: #333333">:=</span>
+    <span style="color: #007700">&lt;parameters&gt;</span>
+    {<span style="color: #008800; font-weight: bold">for</span> <span style="color: #996633">$p</span> <span style="color: #000000; font-weight: bold">in</span> <span style="color: #0066BB; font-weight: bold">request:get-parameter-names</span>()
+        <span style="color: #008800; font-weight: bold">let</span> <span style="color: #996633">$val</span> <span style="color: #333333">:=</span> <span style="color: #0066BB; font-weight: bold">request:get-parameter</span>(<span style="color: #996633">$p</span>,())
+        <span style="color: #008800; font-weight: bold">where</span>  <span style="color: #0066BB; font-weight: bold">not</span>(<span style="color: #996633">$p</span> <span style="color: #333333">=</span> (<span style="background-color: #fff0f0">"document"</span>,<span style="background-color: #fff0f0">"directory"</span>,<span style="background-color: #fff0f0">"stylesheet"</span>))
+        <span style="color: #008800; font-weight: bold">return</span>
+            <span style="color: #007700">&lt;param</span> <span style="color: #007700">name</span>
+        <span style="color: #333333">=</span>"{<span style="color: #996633">$p</span>}"  <span style="color: #007700">value</span>
+        <span style="color: #333333">=</span>"{<span style="color: #996633">$val</span>}"<span style="color: #007700">/&gt;</span>
+    }
+    <span style="color: #007700">&lt;/parameters&gt;</span>
+<span style="color: #008800; font-weight: bold">return</span>
+    <span style="color: #0066BB; font-weight: bold">transform:transform</span>(<span style="color: #996633">$xml</span>, <span style="color: #996633">$xsl</span>, <span style="color: #996633">$params</span>)
+};
+</pre>
+</div>

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- HTML generated using hilite.me -->
+<div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;">
+    <pre style="margin: 0; line-height: 125%">
+        <span style="color: #888888"># -*- coding: utf-8 -*-</span>
+<span style="color: #888888"># script_transfo.py -- CamilleRey</span>
+<span style="color: #888888"># petit script pour effectuer la transfo xslt sur tous les documents en input</span>
+
+<span style="color: #008800; font-weight: bold">import</span> <span style="color: #0e84b5; font-weight: bold">lxml.etree</span> <span style="color: #008800; font-weight: bold">as</span> <span style="color: #0e84b5; font-weight: bold">ET</span>
+<span style="color: #008800; font-weight: bold">import</span> <span style="color: #0e84b5; font-weight: bold">zipfile</span>
+<span style="color: #008800; font-weight: bold">import</span> <span style="color: #0e84b5; font-weight: bold">glob</span>
+
+namespaces <span style="color: #333333">=</span> {<span style="background-color: #fff0f0">'xsl'</span>: <span style="background-color: #fff0f0">'http://www.w3.org/1999/XSL/Transform'</span>, <span style="background-color: #fff0f0">"meta"</span> : <span style="background-color: #fff0f0">"urn:oasis:names:tc:opendocument:xmlns:meta:1.0"</span>, <span style="background-color: #fff0f0">"office"</span> : <span style="background-color: #fff0f0">"urn:oasis:names:tc:opendocument:xmlns:office:1.0"</span>}
+
+<span style="color: #888888"># pour tous les fichiers odt du répertoire input</span>
+<span style="color: #008800; font-weight: bold">for</span> doc <span style="color: #000000; font-weight: bold">in</span> glob<span style="color: #333333">.</span>glob(<span style="background-color: #fff0f0">'./input/*.odt'</span>):
+
+        <span style="color: #888888"># on récupère le contenu des fichiers xml archivés content.xml et meta.xml</span>
+        <span style="color: #888888"># ces contenus sont parsés et stockés dans des objets e.tree de lxml</span>
+        <span style="color: #008800; font-weight: bold">with</span> zipfile<span style="color: #333333">.</span>ZipFile(f<span style="background-color: #fff0f0">"{doc}"</span>) <span style="color: #008800; font-weight: bold">as</span> arch_odt:
+            content <span style="color: #333333">=</span> ET<span style="color: #333333">.</span>parse(arch_odt<span style="color: #333333">.</span>open(<span style="background-color: #fff0f0">"content.xml"</span>,<span style="background-color: #fff0f0">'r'</span>))
+            meta <span style="color: #333333">=</span> ET<span style="color: #333333">.</span>parse(arch_odt<span style="color: #333333">.</span>open(<span style="background-color: #fff0f0">"meta.xml"</span>,<span style="background-color: #fff0f0">'r'</span>))
+        <span style="color: #888888"># on parse et stocke la feuille de style xsl</span>
+        xslt <span style="color: #333333">=</span> ET<span style="color: #333333">.</span>parse(<span style="background-color: #fff0f0">"transformationV2.xsl"</span>)
+        <span style="color: #888888"># on copie dans l'élément racine du xsl l'élément //office:meta contenu dans meta.xml</span>
+        <span style="color: #888888"># (c'est celui qui contient les éléments qui nous intéressent)</span>
+        xslt<span style="color: #333333">.</span>getroot()<span style="color: #333333">.</span>append((meta<span style="color: #333333">.</span>findall(<span style="background-color: #fff0f0">"//office:meta"</span>, namespaces)[<span style="color: #0000DD; font-weight: bold">0</span>]))
+
+        <span style="color: #888888">#on effectue la transformation</span>
+        transform <span style="color: #333333">=</span> ET<span style="color: #333333">.</span>XSLT(xslt)
+        resultat <span style="color: #333333">=</span> transform(content)
+
+        <span style="color: #888888">#écriture du résultat dans le répertoire output</span>
+        resultat<span style="color: #333333">.</span>write_output(f<span style="background-color: #fff0f0">"output/{doc[8:-4]}.xml"</span>)
+</pre>
+</div>

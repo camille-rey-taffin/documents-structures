@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<meta xmlns="http://exist-db.org/xquery/repo">
+    <description>Application de Camille</description>
+    <author/>
+    <website/>
+    <status>alpha</status>
+    <license>GNU-LGPL</license>
+    <copyright>true</copyright>
+    <type>application</type>
+    <target>application-camille</target>
+    <prepare>pre-install.xql</prepare>
+    <finish/>
+<deployed>2021-01-10T02:11:43.844+01:00</deployed>
+</meta>

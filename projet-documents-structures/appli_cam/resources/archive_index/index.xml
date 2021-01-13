@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-model href="resources/grammaire_index.rng" type="application/xml" schematypens="http://relaxng.org/ns/structure/1.0"?>
+<page titre="presentation">
+    <main_titre> CamCam Project</main_titre>
+    <sous_titre> Un projet fait avec le coeur (et Bootstrap) </sous_titre>
+    <partie titre="Présentation de projet">
+        <p>L’objectif de ce projet est de réaliser une chaîne de traitement pour la publication de documents en ligne. À partir de documents qui nous sont fournis, nous proposons un site web pour présenter le contenu de ces documents et interagir avec.</p>
+        <p>Deux grandes étapes sont mises en oeuvre.</p>
+        <titre n="1"> Partie1 </titre>
+        <p>La première étape consiste à transformer les documents au format OpenDocument en document XML selon le standard de la <lien source="https://tei-c.org">Text Encoding Initiative</lien> (TEI). Pour cela, son schéma nous est communiqué afin de nous permettre de valider la structure.</p>
+        <titre n="2">1 - Récupérer les XML des documents ODT</titre>
+        <p> Le format OpenDocument est une archive de plusieurs fichiers XML. Pour récupérer ces fichiers XML, il suffit de procéder à une opération d'extraction, dans la ligne de commande par exemple, avec la commande : UNZIP file.odt -d file</p>
+        <titre n="2">2 - Extraire le contenu du texte et ses métadonnées</titre>
+        <p>On peut extraire le contenu via une transformation XSLT, à partir des documents <ital>content.xml</ital> pour le contenu, et <ital>meta.xml</ital> pour les métadonnées.</p>
+        <titre n="2">3 - Générer un document au format TEI</titre>
+        <p> Une fois le contenu à extraire identifié, il faut savoir quoi en faire. Pour savoir comment structurer le document XML en sortie, on peut se référer au schéma de la TEI, et à la doc de la TEI disponible sur internet. 
+            On exploite donc cette structure dans notre feuille de style XSLT pour extraire le contenu et les métadonnées du document original, et les "redisposer" selon la structure TEI, avec les bons noms de balises. Le schéma de la TEI
+            est indiqué dans le document en sortie, afin de faciliter la validation.
+            Les deux feuilles de style (deux versions, voir section suivante) sont disponibles dans l'archive du projet dans <imp>/transformation/</imp>
+        </p>
+        <image source="resources/images/input.png" legende="Exemple d'odt en input (Madame Bovary)"/>
+        <image source="resources/images/output.png" legende="Exemple de XML en output (Madame Bovary)"/>
+        <titre n="2">4 - Appliquer à tous les documents</titre>
+        <p> J'ai fait deux version pour la feuille de style. </p>
+        <p> La version 1 <imp>/transformation/transformation.xsl</imp> ne permet de traiter qu'un document à la fois, car il faut manuellement
+         modifier la valeur de la variable de répertoire (contenant content.xml et meta.xml) avant chaque lancement de la transformation sur un document content.xml. Elle implique donc
+         d'avoir réalisé la décompression de l'archive odt au préalable.
+         Cette version vise donc à être utilisée pour générer les documents TEI un à la fois, depuis Oxygen par exemple.</p>
+        <p> La version 2 <imp>/transformation/transformationV2.xsl</imp> vise à être appelée à partir d'un script python (<imp>/transformation/script_transfo.py</imp>), qui traduit automatiquement tous les fichiers odt du
+        répertoire input et écrit les résultats au nom correspondant .xml dans le répertoire output. Ce script va chercher lui-même dans les documents XML archivés dans un document odt,
+        il n'y a donc pas besoin d'effectuer de décompression au préalable. Ce script est plus pratique car il suffit de le lancer en ligne de commande depuis le répertoire où il se trouve
+         avec "python script_transfo.py" et il effectue toutes les transformations.</p>
+        <p> Le script python</p>
+        <cadre source="resources/code_display/script_transfo.html"/>
+        <p> Le seul passage qui diffère entre la V1 et la V2 de la feuille XSLT :</p>
+        <image source="resources/images/xsltv1.png" legende="Version 1"/>
+        <image source="resources/images/xsltv2.png" legende="Version 2"/>
+        <titre n="1"> Partie2 </titre>
+        <p>Les XML ainsi obtenus sont stockés dans une base de données XML (<lien source="http://exist-db.org/exist/apps/homepage/index.html">eXist- db</lien>). 
+            À partir de celle-ci, nous devons réaliser un site internet à l’aide de xquery et xslt. 
+            Sur ce site seront présentées trois interfaces : une pour la recherche d’informations dans les documents, une autre pour afficher les documents mis en page et finalement une page pour présenter le proje.t</p>
+        <titre n="2">1 - Installer ExistDb et créer une application</titre>
+        <p>L'installation et la création d'une application ont été vues en cours, mais on peut simplement suivre la documentation d'eXist-db pour les faire. Une fois l'application créée, dans une collection "data", on ajoute manuellement les 3 documents XML générés dans la partie précédente.
+        J'ai personnellement décidé de connecter la base eXist-db à Oxygen, et ai travaillé quasi-exclusivement depuis Oxygen pour l'édition des documents de l'app (sauf pour créer un fichier collection.xconf, pour l'indexation).</p>
+        <titre n="2">2 - Créer une page de présentation</titre>
+        <p>La page de présentation (présente page) doit être le résultat d'une transformation XSLT sur un document XML. Ce document XML doit être validé par un schéma Relax-NG que nous devons définir. </p>
+        <titre n="2">3 - Créer une page d'affichage des documents</titre>
+        <p>La page d'affichage des documents doit permettre d'afficher les documents XML générés à l'étape précédente. Le rendu est libre dans sa forme, mais doit être effectué avec XSLT ou/et xQuery. </p>
+        <titre n="2">4 - Créer une page de requêtes</titre>
+        <p>La page de requêtes doit permettre de questionner la base de données : on peut lister les documents selon certaines métadonnées, ou bien chercher des mots clés dans les documents, avec ou sans filtre(s) de métadonnées.</p>
+    </partie>
+    <partie titre="Présentation du site">
+        <titre n="1"> Généralités sur le site </titre>
+        <p>Pour avoir un site un peu esthétique, j'ai utilisé un template <lien source="https://startbootstrap.com/themes">Bootstrap</lien> dont j'ai réutilisé certains éléments.
+            J'ai également utilisé <lien source="https://www.bitmoji.com/">Bitmoji</lien> pour les avatars. Chaque page (index.html, page2.html, page3.html) a pour élément racine un élément de type "div",
+            qui  a un attribut class de valeur "templates:surround?with=templates/page.html&amp;at=content". Cela permet à chaque page d'être entourée par des éléments définis dans le <imp>/templates/page.html</imp>. Ici, cela correspond à la structure générale du site qui est répétée à chaque page (menu, copyright...).</p>
+        <titre n="2"> Page de présentation </titre>
+        <p>La page de présentation <imp>/index.html</imp> est à la base générée (au préalable avec Oxygen) à partir de deux fichiers : <imp>resources/archive_index/index.xml</imp> et <imp>resources/archive_index/index_transfo.xsl</imp>. La structure du document xml est très simple :</p>
+        <cadre source="resources/code_display/index.html"/>
+        <p>La transformation est effectuée sur ce document pour qu'il soit rendu dans le même style que le reste du site, grâce à cette feuille de transformation : </p>
+        <cadre source="resources/code_display/index_transfo.html"/>
+        <p>Le document index.xml est validé par une grammaire RelaxNG disponible dans <imp>/resources/grammaire_index.rng</imp>
+        </p>
+        <titre n="2"> Page de requête </titre>
+        <p>La page de requête permet d'effectuer des requêtes sur les livres au format XML TEI contenus dans la base de données. Les requêtes peuvent être faites avec ou sans mot-clés, et avec ou sans filtre(s) (indépendants de la case). Les filtres sont superposables. 
+            Par exemple, si on effectue la requête suivante, qui ne contient pas de mot-clé : </p>
+        <p>Les résultats renvoyés seront la liste des documents dont les métadonnées correspondent aux filtres</p>
+        <image source="resources/images/requete1.png" legende="Requete uniquement filtres"/>
+        <image source="resources/images/resultat1.png" legende="Résultats"/>
+        <p>Pour une requête de mot-clé :</p>
+        <image source="resources/images/requete2.png" legende="Requete mot-clé SANS filtres"/>
+        <p>Les résultats renvoyés seront les mots-clés trouvés dans leur contexte, ainsi que le document dans lequel ils ont été trouvés. Ils sont ordonnés par "match score" décroissant : </p>
+        <image source="resources/images/resultat2.png" legende="Résultats"/>
+        <p>Pour une requête avec mot-clé et filtres :</p>
+        <image source="resources/images/requete3.png" legende="Requete mot-clé AVEC filtres"/>
+        <image source="resources/images/resultat3.png" legende="Résultats"/>
+        <p>Ces requêtes sont effectuées grâce à une fonction app:chercher() créée dans <imp>modules/app.xql</imp> qui utilise un filtre contains() pour les métadonnées, et ft-query() pour les mots-clés. 
+            Cela implique d'avoir indexé les données au préalable. A NOTER : Les métadonnées étant filtrées avec contains(), le filtre s'effectue en fonction de la présence ou non du segment recherché dans la métadonnée évaluée. Par exemple "mil" pour auteur renverra Emily Brontë.</p>
+        <titre n="2"> Page des documents </titre>
+        <p>La page de présentation des documents permet de visualiser les documents XML. Chaque document est représenté par un petit livre, dont le contenu est consultable en cliquant dessus, via une fenêtre qu'on peut ensuite fermer. (j'ai exploité la classe Portfolio de Bootsrap)
+        Le contenu du document XML est transformé en html (un tableau pour les métadonnées, puis le texte, avec différentes tailles de titres) via une feuille de style XSLT <imp>/resources/xslt/transfo_tei.xsl</imp>. Cette transformation est effectuée par une fonction xQuery app:transfoTEI. 
+            Cette fonction est ensuite appelée dans une autre fonction app:afficherDoc, qui permet d'ajouter un document sur la page (le Livre cliquable et la fenêtre du contenu). Enfin, une fonction app:listerDoc appelle la fonction app:afficherDoc de manière itérative sur tous les documents de la collection <imp>/data.</imp>
+        Ainsi, le contenu de la page est généré à chaque ouverture en fonction du contenu de la collection /data, et à chaque fois qu'un document XML sera ajouté dans cette collection, un objet cliquable lui correspondant sera créé sur la page automatiquement.</p>
+        <p>Les trois requêtes XQuery utilisées pour afficher les documents sont : </p>
+        <cadre source="resources/code_display/affichage_doc.html"/>
+        <p>La feuille de style de transformation des documents XML tei : </p>
+        <cadre source="resources/code_display/transfo_tei.html"/>
+        
+    </partie>
+    <partie titre="Présentation des difficultés">
+        <titre n="1"> Difficultés sur la Partie 1  </titre>
+        <titre n="2"> Utiliser deux documents XML</titre>
+        <p>La feuille de transformation XSLT que j'ai créée pour transformer les XML contenus dans l'archive d'un document odt en un XML au format TEI est globalement très simple, 
+        mais j'ai tout de même un peu bloqué sur comment exploiter le contenu de deux documents XML. Comme expliqué précedemment, j'ai trouvé deux solutions : </p>
+        <p>Solution 1 (pour un document à la fois) : J'ai utilisé deux variables : $repertoire qui contient le nom du répertoire d'archive XML a traiter, et $meta_doc qui représente le deuxième document à traiter (le meta.xml), grâce à la fonction doc() et la variable $repertoire. 
+        Pour opérer la transformation avec Oxygen sur un document content.xml, il est alors nécessaire de bien penser à changer également le contenu de la variable $repertoire pour que le bon fichier meta.xml soit traité!</p>
+        <p>Solution 2 : utiliser uniquement une variable $meta_doc qui correspond au noeud office:meta. Le noeud office:meta est importé depuis meta.xml au cours de l'exécution d'un script python script_transfo.py qui effectue toutes les transformations. </p>
+        <titre n="2"> Hiérarchisation d'une structure plate </titre>
+        <p>C'est la partie qui a été la plus difficile pour moi dans cet exercice de XSLT : les éléments de titres et de paragraphes sont tous au même niveau dans le <ital>content.xml</ital>. 
+            J'ai trouvé assez difficile de mettre au point une stratégie qui puisse rendre une structure hiérarchisée correctement à partir de cette structure plate. J'avais au début beaucoup d'erreurs d'imbrication, ou d'erreurs qui auraient pu arriver sur des documents plus longs (puisque nos documents étaient tronqués).
+            Je me suis inspirée d'une solution trouvée sur internet en la complexifiant un petit peu pour éviter des problèmes d'imbrication, le résultat est commenté directement dans la feuille <imp>transformation/transformation.xsl</imp>. Voici l'extrait concerné : </p>
+        <cadre source="resources/code_display/pb_xsl.html"/>
+        <titre n="1"> Difficultés sur la partie 2 </titre>
+        <titre n="2"> Utilisation de exist-DB </titre>
+        <p>L'utilisation d'exist-DB ne m'a pas posé beaucoup de problèmes, dans le sens où je n'ai pas eu de bugs contrairement à ce qu'ont rapporté d'autre étudiants.
+        Etant plus habituée à Oxygen, j'ai principalement modifié les fichiers depuis Oxygen et non eXide. Pour ce qui est de l'organisation de l'app (l'utilisation des modules/fichier.xql, des templates etc),
+        j'ai beaucoup tâtonné, et un <lien source="https://howto.acdh.oeaw.ac.at/blog/part-8-full-text-search/">tutoriel</lien> partagé par une camarade m'a aidée à comprendre les points qui restaient obscurs. Je m'en suis inspirée pour la base de la requête de recherche de mots-clés.</p>
+        <titre n="2"> Combiner requêtes </titre>
+        <p>Pour la requête de recherche en question, j'ai eu un peu de mal à trouver comment combiner des requêtes par mots-clés et/ou filtres de métadonnées. 
+        J'ai utilisé request:get-parameter(), dans une série de tests, mais je suis persuadée qu'il existe une meilleure façon de faire.</p>
+    </partie>
+</page>
